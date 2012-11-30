@@ -1,0 +1,30 @@
+﻿Build started 11/29/2012 6:33:42 PM.
+     1>Project "C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\server_episodic-2005.vcxproj" on node 3 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating ".\Release_episodic\Server Episodic.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\.\Release_episodic\Server Episodic.dll) does not match the Linker's OutputFile property value (C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\Release_episodic\Server.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(Server Episodic) does not match the Linker's OutputFile property value (Server). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+       Link:
+         All outputs are up-to-date.
+         server_episodic-2005.vcxproj -> C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\.\Release_episodic\Server Episodic.dll
+       CustomBuildStep:
+         Description: Copying to c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\
+         if exist "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll"
+         if exist "C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\Release_episodic\"server.dll copy "C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\Release_episodic\"server.dll "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll"
+         if exist c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.pdb attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.pdb"
+         if exist "C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\Release_episodic\"server.pdb copy "C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\Release_episodic\"server.pdb "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin"
+         
+         :VCEnd
+                 1 file(s) copied.
+       FinalizeBuildStatus:
+         Deleting file ".\Release_episodic\Server Episodic.unsuccessfulbuild".
+         Touching ".\Release_episodic\Server Episodic.lastbuildstate".
+     1>Done Building Project "C:\SourceSDK.Source_Code\BFA_NEW\src\game\server\server_episodic-2005.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.14
