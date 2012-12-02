@@ -61,9 +61,7 @@ public:
 
 	void SetActivity( Activity NewActivity );
 	NPC_STATE		SelectIdealState ( void );
-	//BFA
-	void InputFov( inputdata_t &inputdata );
-	//BFA
+
 	// Input handlers.
 	void InputLookOn( inputdata_t &inputdata );
 	void InputLookOff( inputdata_t &inputdata );

@@ -2,43 +2,43 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{f8853dd6-6dc5-4069-995f-6a1b08328d1c}</UniqueIdentifier>
+      <UniqueIdentifier>{7de14b34-737f-43a8-9de0-2e62e56a1130}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Precompiled Header">
-      <UniqueIdentifier>{83aac67b-362d-4077-a76c-722c646498f9}</UniqueIdentifier>
+      <UniqueIdentifier>{abb12a7e-27b1-4be6-9ded-91935614870c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Temporary Entities">
-      <UniqueIdentifier>{fc01981b-5472-4c22-8162-3ab4b7932331}</UniqueIdentifier>
+      <UniqueIdentifier>{8388c096-4622-4b91-bd9f-4c5d932ab799}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\game_controls">
-      <UniqueIdentifier>{2daa0d35-ac6d-45be-88ed-f73852240382}</UniqueIdentifier>
+      <UniqueIdentifier>{c2526f8f-0997-4652-a2b4-ec18c37fe196}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\HL2 DLL">
-      <UniqueIdentifier>{8a01d3e4-4474-4cab-a7c5-a66ed07d368a}</UniqueIdentifier>
+      <UniqueIdentifier>{113dbdb6-c12d-4655-9d8f-d3733b7c315d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Link Libraries">
-      <UniqueIdentifier>{b6529181-a061-459e-a2cf-325d838419fb}</UniqueIdentifier>
+      <UniqueIdentifier>{f84d27b9-ae2d-4515-b366-e5ea36730fa8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources">
-      <UniqueIdentifier>{c6af0672-14fe-47c7-9fcf-129e20495bfc}</UniqueIdentifier>
+      <UniqueIdentifier>{072a78aa-9d21-469b-928a-cd56c0dbf1c0}</UniqueIdentifier>
     </Filter>
     <Filter Include="MP3">
-      <UniqueIdentifier>{e6fada60-d7a1-4021-a886-3ff9cdca75b8}</UniqueIdentifier>
+      <UniqueIdentifier>{fe67f5d3-6817-477f-84dd-272df153e6ca}</UniqueIdentifier>
     </Filter>
     <Filter Include="Tool Framework">
-      <UniqueIdentifier>{af44ad91-f10c-47e6-a33c-c13b499459c2}</UniqueIdentifier>
+      <UniqueIdentifier>{c0d5de0d-6064-499c-b4bf-ca61299360f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{83928266-afa2-48cf-93f8-475a1550b396}</UniqueIdentifier>
+      <UniqueIdentifier>{c5c2e6ec-b938-4d45-8819-e60b99ce70e0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Public Header Files">
-      <UniqueIdentifier>{055944f0-ec0f-4482-a087-68670af73eb7}</UniqueIdentifier>
+      <UniqueIdentifier>{5d60c705-032d-49aa-8c9d-26753517f0d2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Game Shared Header Files">
-      <UniqueIdentifier>{597f8aa5-d0b1-4c22-91c6-e32b095286c0}</UniqueIdentifier>
+      <UniqueIdentifier>{7d0270c5-f7f3-4b02-a801-300c414da3c3}</UniqueIdentifier>
     </Filter>
     <Filter Include="game_controls Header Files">
-      <UniqueIdentifier>{a5bcbe81-1423-4c98-8c79-2f3a5d6fad53}</UniqueIdentifier>
+      <UniqueIdentifier>{a6e83a0d-e4dd-4995-9006-3df60656a289}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

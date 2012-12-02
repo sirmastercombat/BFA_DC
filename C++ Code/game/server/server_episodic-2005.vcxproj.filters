@@ -2,34 +2,31 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{8ca98b65-4f10-40d4-bfdc-fe1983a87f3a}</UniqueIdentifier>
+      <UniqueIdentifier>{ccdf4fc2-2a21-405e-83b0-251f331638d4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Precompiled Header">
-      <UniqueIdentifier>{99e69947-4783-415e-8be7-2cdbee22c9f7}</UniqueIdentifier>
+      <UniqueIdentifier>{a14c9503-7343-4f56-9eec-e5f764c131d3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\temporary entities">
-      <UniqueIdentifier>{ba80dfcf-fec6-447f-9753-dee7b2a49b83}</UniqueIdentifier>
+      <UniqueIdentifier>{c807c01e-8ae9-4e08-8fb0-a2dcf52512d2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\HL2 DLL">
-      <UniqueIdentifier>{11a5a5fe-8a06-456c-aa5e-705e252869dc}</UniqueIdentifier>
+      <UniqueIdentifier>{8913ccac-2e29-435f-a673-e85cebe6e8b5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\HL2 DLL\unused">
-      <UniqueIdentifier>{7b93e203-e2e9-46a3-aacc-ae7324d260aa}</UniqueIdentifier>
+      <UniqueIdentifier>{29906a9d-2bf3-497a-83e3-4697e833d60e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Link Libraries">
-      <UniqueIdentifier>{1efc7fc5-51a1-4af2-ae8a-edc8ee5e9891}</UniqueIdentifier>
+      <UniqueIdentifier>{532437fc-c1ec-4a92-99c6-1237070c6594}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resources">
-      <UniqueIdentifier>{6ef50f27-0bcd-435a-b713-8a505db9c20d}</UniqueIdentifier>
+      <UniqueIdentifier>{b0a9abc2-b305-4931-98a1-ee96f56103ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{e37dc1fa-960b-4004-998f-f0d339a981f7}</UniqueIdentifier>
+      <UniqueIdentifier>{8a8af648-42c2-4a9b-8cbe-8b5d1f04d9ba}</UniqueIdentifier>
     </Filter>
     <Filter Include="Tools Framework">
-      <UniqueIdentifier>{c5d62995-5148-434f-bdd1-cd563b54eba9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\BFA DLL">
-      <UniqueIdentifier>{5d8d588d-38ea-436a-8406-23ecf144d6e9}</UniqueIdentifier>
+      <UniqueIdentifier>{185029a8-9352-4859-a777-6e31f16359ed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -317,10 +317,6 @@ void CAI_BaseNPC::InitDefaultActivitySR(void)
 	ADD_ACTIVITY_TO_SR( ACT_VM_ATTACH_SILENCER );
 	ADD_ACTIVITY_TO_SR( ACT_VM_DETACH_SILENCER );
 
-
-	ADD_ACTIVITY_TO_SR( ACT_VM_IDLE_TO_RUN );
-	ADD_ACTIVITY_TO_SR( ACT_VM_IDLE_RUN );
-	ADD_ACTIVITY_TO_SR( ACT_VM_RUN_TO_IDLE );
 //===========================
 // HL2 Specific Activities
 //===========================

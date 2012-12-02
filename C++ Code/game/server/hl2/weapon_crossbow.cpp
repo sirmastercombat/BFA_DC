@@ -583,11 +583,19 @@ bool CWeaponCrossbow::Reload( void )
 void CWeaponCrossbow::CheckZoomToggle( void )
 {
 	CBasePlayer *pPlayer = ToBasePlayer( GetOwner() );
-	
-	if ( pPlayer->m_afButtonPressed & IN_ATTACK2 )
+
+	if ( pPlayer->m_nButtons & IN_ALT1 && !bLowered ) 
 	{
-			ToggleZoom();
+		// reload when reload is pressed, or if no buttons are down and weapon is empty.
+		EnableIronsights();
+		m_bInZoom = true;
 	}
+	else if ( !( pPlayer->m_nButtons & IN_ALT1) || bLowered )
+	{
+		DisableIronsights();
+		m_bInZoom = false;
+	}
+
 }
 
 //-----------------------------------------------------------------------------

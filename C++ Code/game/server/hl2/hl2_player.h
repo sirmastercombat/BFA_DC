@@ -245,6 +245,13 @@ public:
 	void				FlashlightTurnOff( void );
 	bool				IsIlluminatedByFlashlight( CBaseEntity *pEntity, float *flReturnDot );
 	void				SetFlashlightPowerDrainScale( float flScale ) { m_flFlashlightPowerDrainScale = flScale; }
+	
+	//BULLET TIME BITCH!
+	int					BulletTimeIsOn( void );
+	void				BulletTimeTurnOn( void );
+	void				BulletTimeTurnOff( void );
+//	bool				m_bBulletTimeOn;
+	CNetworkVar( bool, m_fBulletTimeOn );
 
 	// Underwater breather device
 	virtual void		SetPlayerUnderwater( bool state );
@@ -361,7 +368,9 @@ private:
 
 	bool				m_bFlashlightDisabled;
 	bool				m_bUseCappedPhysicsDamageTable;
-	
+	//BULLET TIME BITCH!
+	bool				m_bBulletTimeDisabled;
+
 	float				m_flArmorReductionTime;
 	int					m_iArmorReductionFrom;
 

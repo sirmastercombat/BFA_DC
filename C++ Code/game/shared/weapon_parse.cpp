@@ -436,22 +436,8 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 	else
 		Q_strncpy( szAmmo2, pAmmo, sizeof( szAmmo2 )  );
 	iAmmo2Type = GetAmmoDef()->Index( szAmmo2 );
-
-	// Now read the weapon sounds
-	memset( aShootSounds, 0, sizeof( aShootSounds ) );
-	KeyValues *pSoundData = pKeyValuesData->FindKey( "SoundData" );
-	if ( pSoundData )
-	{
-		for ( int i = EMPTY; i < NUM_SHOOT_SOUND_TYPES; i++ )
-		{
-			const char *soundname = pSoundData->GetString( pWeaponSoundCategories[i] );
-			if ( soundname && soundname[0] )
-			{
-				Q_strncpy( aShootSounds[i], soundname, MAX_WEAPON_STRING );
-			}
-		}
-	}
 		KeyValues *pSights = pKeyValuesData->FindKey( "IronSight" );
+
 	if (pSights)
 	{
 		vecIronsightPosOffset.x		= pSights->GetFloat( "forward", 0.0f );
@@ -470,6 +456,20 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 		vecIronsightPosOffset = vec3_origin;
 		angIronsightAngOffset.Init();
 		flIronsightFOVOffset = 0.0f;
+	}
+	// Now read the weapon sounds
+	memset( aShootSounds, 0, sizeof( aShootSounds ) );
+	KeyValues *pSoundData = pKeyValuesData->FindKey( "SoundData" );
+	if ( pSoundData )
+	{
+		for ( int i = EMPTY; i < NUM_SHOOT_SOUND_TYPES; i++ )
+		{
+			const char *soundname = pSoundData->GetString( pWeaponSoundCategories[i] );
+			if ( soundname && soundname[0] )
+			{
+				Q_strncpy( aShootSounds[i], soundname, MAX_WEAPON_STRING );
+			}
+		}
 	}
 }
 

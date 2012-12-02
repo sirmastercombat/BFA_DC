@@ -50,7 +50,8 @@
 #ifdef HL2_EPISODIC
 #include "npc_alyx_episodic.h"
 #endif
-
+#include <igameevents.h>
+#include <igamesystem.h>
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -187,6 +188,8 @@ public:
 
 	COutputEvent m_OnFlashlightOn;
 	COutputEvent m_OnFlashlightOff;
+	COutputEvent m_OnBulletTimeOn;
+	COutputEvent m_OnBulletTimeOff;
 	COutputEvent m_PlayerHasAmmo;
 	COutputEvent m_PlayerHasNoAmmo;
 	COutputEvent m_PlayerDied;
@@ -405,7 +408,7 @@ CHL2_Player::CHL2_Player()
 	CSuitPowerDevice SuitDeviceFlashlight( bits_SUIT_DEVICE_FLASHLIGHT, 2.222 );	// 100 units in 45 second
 #endif
 CSuitPowerDevice SuitDeviceBreather( bits_SUIT_DEVICE_BREATHER, 6.7f );		// 100 units in 15 seconds (plus three padded seconds)
-
+CSuitPowerDevice SuitDeviceBulletTime( bits_SUIT_DEVICE_BULLETIME, 1.12 );	// 100 units in 90 second
 
 IMPLEMENT_SERVERCLASS_ST(CHL2_Player, DT_HL2_Player)
 	SendPropDataTable(SENDINFO_DT(m_HL2Local), &REFERENCE_SEND_TABLE(DT_HL2Local), SendProxy_SendLocalDataTable),
@@ -426,6 +429,8 @@ void CHL2_Player::Precache( void )
 	PrecacheScriptSound( "HL2Player.TrainUse" );
 	PrecacheScriptSound( "HL2Player.Use" );
 	PrecacheScriptSound( "HL2Player.BurnPain" );
+	PrecacheScriptSound( "HL2Player.bullettimeon_bt" );
+	PrecacheScriptSound( "HL2Player.bullettimeoff_bt" );
 }
 
 //-----------------------------------------------------------------------------
@@ -1700,6 +1705,17 @@ void CHL2_Player::CheatImpulseCommands( int iImpulse )
 		CommanderMode();
 		break;
 	}
+	case 110:
+        // temporary flashlight for level designers
+        if ( BulletTimeIsOn() )
+		{
+			BulletTimeTurnOff();
+		}
+        else 
+		{
+			BulletTimeTurnOn();
+		}
+		break;
 
 	case 51:
 	{
@@ -1805,12 +1821,26 @@ void CHL2_Player::SuitPower_Update( void )
 			flPowerLoad -= ( SuitDeviceFlashlight.GetDeviceDrainRate() * (1.0f - factor) );
 		}
 
+		if( SuitPower_IsDeviceActive(SuitDeviceBulletTime) )
+		{
+			float factor;
+
+			factor = 1.0f / m_flFlashlightPowerDrainScale;
+
+			flPowerLoad -= ( SuitDeviceBulletTime.GetDeviceDrainRate() * (1.0f - factor) );
+		}
+
 		if( !SuitPower_Drain( flPowerLoad * gpGlobals->frametime ) )
 		{
 			// TURN OFF ALL DEVICES!!
 			if( IsSprinting() )
 			{
 				StopSprinting();
+			}
+
+			if( BulletTimeIsOn() )
+			{
+				BulletTimeTurnOff();
 			}
 
 			if ( Flashlight_UseLegacyVersion() )
@@ -2055,6 +2085,99 @@ void CHL2_Player::FlashlightTurnOff( void )
 	flashlightoff.SetFloat( m_HL2Local.m_flSuitPower / 100.0f );
 	FirePlayerProxyOutput( "OnFlashlightOff", flashlightoff, this, this );
 }
+/*
+BULLET TIME BITCH!
+*/
+/*
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void CHL2_Player::BulletTimeTurnOn( void )
+{
+	if( m_bBulletTimeDisabled )
+		return;
+
+#ifdef HL2_DLL
+	if( !IsSuitEquipped() )
+		return;
+#endif
+
+	EmitSound( "HL2Player.FlashLightOn" );
+	m_fBulletTimeOn = true;
+	variant_t bullettimeon;
+	bullettimeon.SetFloat( m_HL2Local.m_flSuitPower / 100.0f );
+	FirePlayerProxyOutput( "OnBulletTimeTurnOn", bullettimeon, this, this );
+}
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void CHL2_Player::BulletTimeTurnOff( void )
+{
+
+	EmitSound( "HL2Player.FlashLightOff" );
+	m_fBulletTimeOn = false;
+	variant_t bullettimeoff;
+	bullettimeoff.SetFloat( m_HL2Local.m_flSuitPower / 100.0f );
+	FirePlayerProxyOutput( "OnBulletTimeTurnOff", bullettimeoff, this, this );
+}
+*/
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+int CHL2_Player::BulletTimeIsOn( void )
+{
+	return m_fBulletTimeOn;
+}
+
+void CHL2_Player::BulletTimeTurnOn( void )
+{
+	if( m_HL2Local.m_flSuitPower < 10 )
+	{
+		CPASAttenuationFilter filter( this );
+		filter.UsePredictionRules();
+		EmitSound( filter, entindex(), "HL2Player.SprintNoPower" );
+
+		return;
+	}
+
+	if( !SuitPower_AddDevice( SuitDeviceBulletTime ) )
+		return;
+	//Stupid me, this never gets called >.>
+//	#ifdef CLIENT_DLL
+//		engine->ClientCmd_Unrestricted("host_timescale 0.2");
+//	#endif
+
+	CPASAttenuationFilter filter( this );
+	filter.UsePredictionRules();
+	EmitSound( filter, entindex(), "HL2Player.bullettimeon_bt" );
+//	engine->ClientCommand( INDEXENT( entindex() ), "bulletimeon" );
+	engine->ServerCommand("sv_cheats 1; host_timescale 0.9; wait; wait; host_timescale 0.8; wait; wait; host_timescale 0.7; wait; wait; host_timescale 0.6; wait; wait; host_timescale 0.4; wait; wait; host_timescale 0.3; wait; wait;  host_timescale 0.2;\n");
+	m_fBulletTimeOn = true;
+}
+
+
+//-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+void CHL2_Player::BulletTimeTurnOff( void )
+{
+	if ( m_HL2Local.m_bitsActiveDevices & SuitDeviceBulletTime.GetDeviceID() )
+	{
+		SuitPower_RemoveDevice( SuitDeviceBulletTime );
+	}
+	CPASAttenuationFilter filter( this );
+	filter.UsePredictionRules();
+	EmitSound( filter, entindex(), "HL2Player.bullettimeoff_bt" );
+//	engine->ClientCommand( INDEXENT( entindex() ), "bulletimeoff" );
+	engine->ServerCommand("sv_cheats 1; host_timescale 0.2; wait; host_timescale 0.3; wait; host_timescale 0.4; wait; host_timescale 0.5; wait; host_timescale 0.6; wait; host_timescale 0.7; wait; host_timescale 0.8; wait; host_timescale 0.9; wait;  host_timescale 1.0;\n");
+//	#ifdef CLIENT_DLL
+//		engine->ClientCmd_Unrestricted("host_timescale 1.0");
+//	#endif
+	m_fBulletTimeOn = false;
+}
+
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -3266,7 +3389,31 @@ void CHL2_Player::UpdateClientData( void )
 		m_HL2Local.m_flFlashBattery = -1.0f;
 	}
 #endif // HL2_EPISODIC
-
+	//BULLET TIME BITCH!
+	if ( Flashlight_UseLegacyVersion() == false )
+	{
+		if ( FlashlightIsOn() && sv_infinite_aux_power.GetBool() == false )
+		{
+			m_HL2Local.m_flFlashBattery -= FLASH_DRAIN_TIME * gpGlobals->frametime;
+			if ( m_HL2Local.m_flFlashBattery < 0.0f )
+			{
+				FlashlightTurnOff();
+				m_HL2Local.m_flFlashBattery = 0.0f;
+			}
+		}
+		else
+		{
+			m_HL2Local.m_flFlashBattery += FLASH_CHARGE_TIME * gpGlobals->frametime;
+			if ( m_HL2Local.m_flFlashBattery > 100.0f )
+			{
+				m_HL2Local.m_flFlashBattery = 100.0f;
+			}
+		}
+	}
+	else
+	{
+		m_HL2Local.m_flFlashBattery = -1.0f;
+	}
 	BaseClass::UpdateClientData();
 }
 
@@ -3765,6 +3912,8 @@ LINK_ENTITY_TO_CLASS( logic_playerproxy, CLogicPlayerProxy);
 BEGIN_DATADESC( CLogicPlayerProxy )
 	DEFINE_OUTPUT( m_OnFlashlightOn, "OnFlashlightOn" ),
 	DEFINE_OUTPUT( m_OnFlashlightOff, "OnFlashlightOff" ),
+	DEFINE_OUTPUT( m_OnBulletTimeOn, "OnBulletTimeOn" ),
+	DEFINE_OUTPUT( m_OnBulletTimeOff, "OnBulletTimeOn" ),
 	DEFINE_OUTPUT( m_RequestedPlayerHealth, "PlayerHealth" ),
 	DEFINE_OUTPUT( m_PlayerHasAmmo, "PlayerHasAmmo" ),
 	DEFINE_OUTPUT( m_PlayerHasNoAmmo, "PlayerHasNoAmmo" ),

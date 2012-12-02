@@ -429,10 +429,6 @@ void ActivityList_RegisterSharedActivities( void )
 	REGISTER_SHARED_ACTIVITY ( ACT_VM_ATTACH_SILENCER );
 	REGISTER_SHARED_ACTIVITY ( ACT_VM_DETACH_SILENCER );
 
-	REGISTER_SHARED_ACTIVITY( ACT_VM_IDLE_TO_RUN );
-	REGISTER_SHARED_ACTIVITY( ACT_VM_IDLE_RUN );
-	REGISTER_SHARED_ACTIVITY( ACT_VM_RUN_TO_IDLE );
-
 //===========================
 // HL2 Specific Activities
 //===========================

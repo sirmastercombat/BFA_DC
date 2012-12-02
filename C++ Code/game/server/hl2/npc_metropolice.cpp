@@ -646,7 +646,7 @@ void CNPC_MetroPolice::Spawn( void )
 		m_iHealth = sk_metropolice_simple_health.GetFloat();
 	}
 
-	m_flFieldOfView		= VIEW_FIELD_ULTRA_NARROW;// indicates the width of this NPC's forward view cone ( as a dotproduct result )
+	m_flFieldOfView		= -0.2;// indicates the width of this NPC's forward view cone ( as a dotproduct result )
 	m_NPCState			= NPC_STATE_NONE;
 	if ( !HasSpawnFlags( SF_NPC_START_EFFICIENT ) )
 	{

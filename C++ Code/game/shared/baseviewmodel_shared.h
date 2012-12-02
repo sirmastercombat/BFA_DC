@@ -54,9 +54,9 @@ public:
 	virtual void			CalcViewModelLag( Vector& origin, QAngle& angles, QAngle& original_angles );
 	virtual void			CalcViewModelView( CBasePlayer *owner, const Vector& eyePosition, 
 								const QAngle& eyeAngles );
- 	void		CalcIronsights( Vector &pos, QAngle &ang );
 	virtual void			AddViewModelBob( CBasePlayer *owner, Vector& eyePosition, QAngle& eyeAngles ) {};
-
+	
+	void		CalcIronsights( Vector &pos, QAngle &ang );
 	// Initializes the viewmodel for use							
 	void					SetOwner( CBaseEntity *pEntity );
 	void					SetIndex( int nIndex );

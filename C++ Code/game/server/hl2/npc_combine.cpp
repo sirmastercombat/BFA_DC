@@ -168,10 +168,7 @@ DEFINE_INPUTFUNC( FIELD_STRING,	"Assault", InputAssault ),
 DEFINE_INPUTFUNC( FIELD_VOID,	"HitByBugbait",		InputHitByBugbait ),
 
 DEFINE_INPUTFUNC( FIELD_STRING,	"ThrowGrenadeAtTarget",	InputThrowGrenadeAtTarget ),
-//BFA
-DEFINE_INPUTFUNC( FIELD_VOID,	"setfov",	InputFov ),
-DEFINE_KEYFIELD( m_flFieldOfView, FIELD_INTEGER, "bfa_fov" ),
-//BFA
+
 DEFINE_FIELD( m_iLastAnimEventHandled, FIELD_INTEGER ),
 DEFINE_FIELD( m_fIsElite, FIELD_BOOLEAN ),
 DEFINE_FIELD( m_vecAltFireTarget, FIELD_VECTOR ),
@@ -203,14 +200,6 @@ bool CNPC_Combine::CreateComponents()
 	return true;
 }
 
-
-//------------------------------------------------------------------------------
-// Purpose: Don't look, only get info from squad.
-//------------------------------------------------------------------------------
-void CNPC_Combine::InputFov( inputdata_t &inputdata )
-{
-	m_flFieldOfView = inputdata.value.Int();
-}
 
 //------------------------------------------------------------------------------
 // Purpose: Don't look, only get info from squad.
@@ -321,7 +310,7 @@ void CNPC_Combine::Spawn( void )
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
 	SetMoveType( MOVETYPE_STEP );
 	SetBloodColor( BLOOD_COLOR_RED );
-	m_flFieldOfView			= VIEW_FIELD_ULTRA_NARROW;// indicates the width of this NPC's forward view cone ( as a dotproduct result )
+	m_flFieldOfView			= -0.2;// indicates the width of this NPC's forward view cone ( as a dotproduct result )
 	m_NPCState				= NPC_STATE_NONE;
 	m_flNextGrenadeCheck	= gpGlobals->curtime + 1;
 	m_flNextPainSoundTime	= 0;

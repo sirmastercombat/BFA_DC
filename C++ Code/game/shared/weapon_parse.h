@@ -110,6 +110,9 @@ public:
 	bool					m_bBuiltRightHanded;
 	bool					m_bAllowFlipping;	// False to disallow flipping the model, regardless of whether
 												// it is built left or right handed.
+	Vector					vecIronsightPosOffset;
+	QAngle					angIronsightAngOffset;
+	float					flIronsightFOVOffset;
 
 // CLIENT DLL
 	// Sprite data, read from the data file
@@ -128,9 +131,7 @@ public:
 	bool					bShowUsageHint;							// if true, then when you receive the weapon, show a hint about it
 
 // SERVER DLL
-	Vector					vecIronsightPosOffset;
-	QAngle					angIronsightAngOffset;
-	float					flIronsightFOVOffset;
+
 };
 
 // The weapon parse function

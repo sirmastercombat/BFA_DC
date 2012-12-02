@@ -257,9 +257,6 @@ typedef enum
 	ACT_VM_ATTACH_SILENCER,
 	ACT_VM_DETACH_SILENCER,
 
-	ACT_VM_IDLE_TO_RUN,
-	ACT_VM_IDLE_RUN,
-	ACT_VM_RUN_TO_IDLE,
 //===========================
 // HL2 Specific Activities
 //===========================

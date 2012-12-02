@@ -559,7 +559,76 @@ void CWeaponShotgun::ItemPostFrame( void )
 	{
 		return;
 	}
+	
+	//Create our trace_t class to hold the end result
+	trace_t WallTR;
+ 
+	//Create Vectors for the start, stop, and direction
+	Vector vecAbsStart, vecAbsEnd, vecDir;
+ 
+	//Take the Player's EyeAngles and turn it into a direction
+	AngleVectors( pOwner->EyeAngles(), &vecDir );
+ 
+	//Get the Start/End
+	vecAbsStart = pOwner->EyePosition();
+	vecAbsEnd = vecAbsStart + (vecDir * 32.0);
+ 
+	//Do the TraceLine, and write our results to our trace_t class, tr.
+	UTIL_TraceLine( vecAbsStart, vecAbsEnd, MASK_ALL, pOwner, COLLISION_GROUP_NONE, &WallTR );
 
+	
+	if (WallTR.DidHit())
+	{
+		bLowered = true;
+		SendWeaponAnim( ACT_VM_IDLE_LOWERED );
+		m_fLoweredReady = gpGlobals->curtime + GetViewModelSequenceDuration();
+		m_flNextPrimaryAttack = m_fLoweredReady;
+	}
+	else if ( !bLowered && (pOwner->m_nButtons & IN_SPEED ) )
+	{
+		bLowered = true;
+		SendWeaponAnim( ACT_VM_IDLE_LOWERED );
+		m_fLoweredReady = gpGlobals->curtime + GetViewModelSequenceDuration();
+		m_flNextPrimaryAttack = m_fLoweredReady;
+	}
+	else if ( bLowered && !(pOwner->m_nButtons & IN_SPEED ) )
+	{
+		bLowered = false;
+		SendWeaponAnim( ACT_VM_IDLE );
+		m_fLoweredReady = gpGlobals->curtime + GetViewModelSequenceDuration();
+		m_flNextPrimaryAttack = m_fLoweredReady;
+	}
+ 
+	if ( pOwner->m_nButtons & IN_ALT1 && !bLowered ) 
+	{
+		// reload when reload is pressed, or if no buttons are down and weapon is empty.
+		EnableIronsights();
+	}
+	else if ( !( pOwner->m_nButtons & IN_ALT1) || bLowered )
+	{
+		DisableIronsights();
+	}
+
+	if ( bLowered )
+	{
+		if ( gpGlobals->curtime > m_fLoweredReady )
+		{
+			bLowered = true;
+			SendWeaponAnim( ACT_VM_IDLE_LOWERED );
+			m_fLoweredReady = gpGlobals->curtime + GetViewModelSequenceDuration();
+		}
+		return;
+	}
+	else if ( bLowered )
+	{
+		if ( gpGlobals->curtime > m_fLoweredReady )
+		{
+			bLowered = false;
+			SendWeaponAnim( ACT_VM_IDLE );
+			m_fLoweredReady = gpGlobals->curtime + GetViewModelSequenceDuration();
+		}
+		return;
+	}
 	if (m_bInReload)
 	{
 		// If I'm primary firing and have one round stop reloading and fire

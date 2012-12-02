@@ -57,11 +57,11 @@
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\</Message>
-      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll"
-if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll"
+      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\</Message>
+      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll"
+if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll"
 </Command>
-      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll;%(Outputs)</Outputs>
+      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -107,8 +107,7 @@ if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "c:\program file
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)$(TargetName).map</MapFileName>
       <SubSystem>Windows</SubSystem>
-      <BaseAddress>
-      </BaseAddress>
+      <BaseAddress> </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>
@@ -133,13 +132,13 @@ if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "c:\program file
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\</Message>
-      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll"
-if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll"
-if exist c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.pdb attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.pdb"
-if exist "$(TargetDir)"server.pdb copy "$(TargetDir)"server.pdb "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin"
+      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\</Message>
+      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll"
+if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll"
+if exist c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.pdb attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.pdb"
+if exist "$(TargetDir)"server.pdb copy "$(TargetDir)"server.pdb "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin"
 </Command>
-      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.dll;c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\server.pdb;%(Outputs)</Outputs>
+      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.dll;c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\server.pdb;%(Outputs)</Outputs>
     </CustomBuildStep>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
@@ -189,8 +188,7 @@ if exist "$(TargetDir)"server.pdb copy "$(TargetDir)"server.pdb "c:\program file
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <BaseAddress>
-      </BaseAddress>
+      <BaseAddress> </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>

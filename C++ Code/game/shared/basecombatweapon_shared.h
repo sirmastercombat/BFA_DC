@@ -180,11 +180,6 @@ public:
 	float					GetViewModelSequenceDuration();	// Return how long the current view model sequence is.
 	bool					IsViewModelSequenceFinished( void ); // Returns if the viewmodel's current animation is finished
 
-	bool                    m_bLowered;
-	bool                    bLowered;
-	float                   m_fLowered;
-	float                   m_fLoweredReady;
-
 	virtual void			SetViewModel();
 
 	virtual bool			HasWeaponIdleTimeElapsed( void );
@@ -235,7 +230,7 @@ public:
 	// Weapon firing
 	virtual void			PrimaryAttack( void );						// do "+ATTACK"
 	virtual void			SecondaryAttack( void ) { return; }			// do "+ATTACK2"
-	virtual void			Melee( void );						// do "+ATTACK"
+
 	// Firing animations
 	virtual Activity		GetPrimaryAttackActivity( void );
 	virtual Activity		GetSecondaryAttackActivity( void );
@@ -256,6 +251,25 @@ public:
 	virtual void			WeaponSound( WeaponSound_t sound_type, float soundtime = 0.0f );
 	virtual void			StopWeaponSound( WeaponSound_t sound_type );
 	virtual const WeaponProficiencyInfo_t *GetProficiencyValues();
+
+	Vector					GetIronsightPositionOffset( void ) const;
+	QAngle					GetIronsightAngleOffset( void ) const;
+	float					GetIronsightFOVOffset( void ) const;
+
+	CNetworkVar( bool, m_bIsIronsighted );
+	CNetworkVar( float, m_flIronsightedTime );
+
+	virtual bool				HasIronsights( void ) { return true; } //default yes; override and return false for weapons with no ironsights (like weapon_crowbar)
+	bool					IsIronsighted( void );
+	void					ToggleIronsights( void );
+	void					EnableIronsights( void );
+	void					DisableIronsights( void );
+	void					SetIronsightTime( void );
+
+	bool                    m_bLowered;
+	bool                    bLowered;
+	float                   m_fLowered;
+	float                   m_fLoweredReady;
 
 	// Autoaim
 	virtual float			GetMaxAutoAimDeflection() { return 0.99f; }
@@ -320,16 +334,6 @@ public:
 	virtual bool			UsesClipsForAmmo2( void ) const;
 	bool					IsMeleeWeapon() const;
 
-	Vector					GetIronsightPositionOffset( void ) const;
-	QAngle					GetIronsightAngleOffset( void ) const;
-	float					GetIronsightFOVOffset( void ) const;
-
-	virtual bool				HasIronsights( void ) { return true; } //default yes; override and return false for weapons with no ironsights (like weapon_crowbar)
-	bool					IsIronsighted( void );
-	void					ToggleIronsights( void );
-	void					EnableIronsights( void );
-	void					DisableIronsights( void );
-	void					SetIronsightTime( void );
 	// derive this function if you mod uses encrypted weapon info files
 	virtual const unsigned char *GetEncryptionKey( void );
 
@@ -486,9 +490,6 @@ private:
 protected:
 
 public:
-	
-	CNetworkVar( bool, m_bIsIronsighted );
-	CNetworkVar( float, m_flIronsightedTime );
 
 	// Networked fields
 	CNetworkVar( int, m_nViewModelIndex );

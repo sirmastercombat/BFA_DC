@@ -59,11 +59,11 @@
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\</Message>
-      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.dll"
-copy "$(TargetDir)"client.dll "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin"
+      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\</Message>
+      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.dll"
+copy "$(TargetDir)"client.dll "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin"
 </Command>
-      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.dll;%(Outputs)</Outputs>
+      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -110,8 +110,7 @@ copy "$(TargetDir)"client.dll "c:\program files (x86)\steam\steamapps\SourceMods
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)$(TargetName).map</MapFileName>
       <SubSystem>Windows</SubSystem>
-      <BaseAddress>
-      </BaseAddress>
+      <BaseAddress> </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>
@@ -136,13 +135,13 @@ copy "$(TargetDir)"client.dll "c:\program files (x86)\steam\steamapps\SourceMods
       </Command>
     </PreBuildEvent>
     <CustomBuildStep>
-      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\</Message>
-      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.dll"
-copy "$(TargetDir)"client.dll "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin"
-if exist "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.pdb" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.pdb"
-if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.pdb"
+      <Message>Copying to c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\</Message>
+      <Command>if exist "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.dll" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.dll"
+copy "$(TargetDir)"client.dll "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin"
+if exist "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.pdb" attrib -r "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.pdb"
+if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.pdb"
 </Command>
-      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.dll;c:\program files (x86)\steam\steamapps\SourceMods\bulletforall-districtchaos\bin\client.pdb;%(Outputs)</Outputs>
+      <Outputs>c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.dll;c:\program files (x86)\steam\steamapps\SourceMods\districtchaos\bin\client.pdb;%(Outputs)</Outputs>
     </CustomBuildStep>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
@@ -193,8 +192,7 @@ if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program file
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <BaseAddress>
-      </BaseAddress>
+      <BaseAddress> </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>

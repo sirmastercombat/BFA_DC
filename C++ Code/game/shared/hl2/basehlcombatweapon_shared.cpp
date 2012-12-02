@@ -331,23 +331,28 @@ float CBaseHLCombatWeapon::CalcViewmodelBob( void )
 void CBaseHLCombatWeapon::AddViewmodelBob( CBaseViewModel *viewmodel, Vector &origin, QAngle &angles )
 {
 	Vector	forward, right;
-	AngleVectors( angles, &forward, &right, NULL );
 
-	CalcViewmodelBob();
+	if ( !this->IsIronsighted() )
+	{
+		AngleVectors( angles, &forward, &right, NULL );
+		
+		CalcViewmodelBob();
 
-	// Apply bob, but scaled down to 40%
-	VectorMA( origin, g_verticalBob * 0.1f, forward, origin );
+		// Apply bob, but scaled down to 40%
+		VectorMA( origin, g_verticalBob * 0.1f, forward, origin );
 	
-	// Z bob a bit more
-	origin[2] += g_verticalBob * 0.1f;
+		// Z bob a bit more
+		origin[2] += g_verticalBob * 0.1f;
 	
-	// bob the angles
-	angles[ ROLL ]	+= g_verticalBob * 0.5f;
-	angles[ PITCH ]	-= g_verticalBob * 0.4f;
+		// bob the angles
+		angles[ ROLL ]	+= g_verticalBob * 0.5f;
+		angles[ PITCH ]	-= g_verticalBob * 0.4f;
 
-	angles[ YAW ]	-= g_lateralBob  * 0.3f;
+		angles[ YAW ]	-= g_lateralBob  * 0.3f;
 
-	VectorMA( origin, g_lateralBob * 0.8f, right, origin );
+		VectorMA( origin, g_lateralBob * 0.8f, right, origin );
+	
+	}
 }
 
 //-----------------------------------------------------------------------------

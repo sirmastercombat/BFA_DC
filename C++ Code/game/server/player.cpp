@@ -5790,7 +5790,6 @@ void CBasePlayer::ImpulseCommands( )
 			FlashlightTurnOn();
 		}
 		break;
-
 	case 200:
 		if ( sv_cheats->GetBool() )
 		{
