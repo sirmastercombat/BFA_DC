@@ -478,6 +478,11 @@ void CBaseServerVehicle::SetPassenger( int nRole, CBaseCombatCharacter *pPasseng
 				{
 					pHL2Player->FlashlightTurnOff();
 				}
+		
+				if ( pHL2Player->BulletTimeIsOn() )
+				{
+					pHL2Player->BulletTimeTurnOff();
+				}
 			}
 #endif
 		}

@@ -431,6 +431,7 @@ void CHL2_Player::Precache( void )
 	PrecacheScriptSound( "HL2Player.BurnPain" );
 	PrecacheScriptSound( "HL2Player.bullettimeon_bt" );
 	PrecacheScriptSound( "HL2Player.bullettimeoff_bt" );
+	PrecacheScriptSound( "HL2Player.heartbeatloop_bt" );
 }
 
 //-----------------------------------------------------------------------------
@@ -1138,6 +1139,8 @@ void CHL2_Player::Spawn(void)
 	GetPlayerProxy();
 
 	SetFlashlightPowerDrainScale( 1.0f );
+
+	BulletTimeTurnOff( true ); //MAKE SURE WE RESUME NORMAL FLOW OF TIME!
 }
 
 //-----------------------------------------------------------------------------
@@ -2129,7 +2132,7 @@ void CHL2_Player::BulletTimeTurnOff( void )
 //-----------------------------------------------------------------------------
 int CHL2_Player::BulletTimeIsOn( void )
 {
-	return m_fBulletTimeOn;
+	return m_HL2Local.m_fBulletTimeOn;
 }
 
 void CHL2_Player::BulletTimeTurnOn( void )
@@ -2155,13 +2158,15 @@ void CHL2_Player::BulletTimeTurnOn( void )
 	EmitSound( filter, entindex(), "HL2Player.bullettimeon_bt" );
 //	engine->ClientCommand( INDEXENT( entindex() ), "bulletimeon" );
 	engine->ServerCommand("sv_cheats 1; host_timescale 0.9; wait; wait; host_timescale 0.8; wait; wait; host_timescale 0.7; wait; wait; host_timescale 0.6; wait; wait; host_timescale 0.4; wait; wait; host_timescale 0.3; wait; wait;  host_timescale 0.2;\n");
-	m_fBulletTimeOn = true;
+	EmitSound( filter, entindex(), "HL2Player.heartbeatloop_bt" );
+
+	m_HL2Local.m_fBulletTimeOn = true;
 }
 
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-void CHL2_Player::BulletTimeTurnOff( void )
+void CHL2_Player::BulletTimeTurnOff( bool NoSound )
 {
 	if ( m_HL2Local.m_bitsActiveDevices & SuitDeviceBulletTime.GetDeviceID() )
 	{
@@ -2169,13 +2174,17 @@ void CHL2_Player::BulletTimeTurnOff( void )
 	}
 	CPASAttenuationFilter filter( this );
 	filter.UsePredictionRules();
-	EmitSound( filter, entindex(), "HL2Player.bullettimeoff_bt" );
+	if ( !NoSound )
+	{
+		EmitSound( filter, entindex(), "HL2Player.bullettimeoff_bt" );
+	}
+	StopSound( entindex(), "HL2Player.heartbeatloop_bt" );
 //	engine->ClientCommand( INDEXENT( entindex() ), "bulletimeoff" );
 	engine->ServerCommand("sv_cheats 1; host_timescale 0.2; wait; host_timescale 0.3; wait; host_timescale 0.4; wait; host_timescale 0.5; wait; host_timescale 0.6; wait; host_timescale 0.7; wait; host_timescale 0.8; wait; host_timescale 0.9; wait;  host_timescale 1.0;\n");
 //	#ifdef CLIENT_DLL
 //		engine->ClientCmd_Unrestricted("host_timescale 1.0");
 //	#endif
-	m_fBulletTimeOn = false;
+	m_HL2Local.m_fBulletTimeOn = false;
 }
 
 

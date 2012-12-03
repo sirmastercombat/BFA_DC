@@ -187,6 +187,8 @@ public:
 	virtual bool		IsConnected();
 	virtual int			GetArmorValue();
 
+
+
 	virtual bool IsHLTV();
 	virtual bool IsPlayer();
 	virtual bool IsFakeClient();
@@ -245,6 +247,8 @@ public:
 
 	virtual void			SetModel( const char *szModelName );
 	void					SetBodyPitch( float flPitch );
+
+	bool IsSprinting( void ) { return false; }
 
 	virtual void			UpdateOnRemove( void );
 

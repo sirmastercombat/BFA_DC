@@ -114,6 +114,8 @@ public:
 	QAngle					angIronsightAngOffset;
 	float					flIronsightFOVOffset;
 
+	bool					m_bNoSprint;
+
 // CLIENT DLL
 	// Sprite data, read from the data file
 	int						iSpriteCount;

@@ -249,9 +249,10 @@ public:
 	//BULLET TIME BITCH!
 	int					BulletTimeIsOn( void );
 	void				BulletTimeTurnOn( void );
-	void				BulletTimeTurnOff( void );
+	void				BulletTimeTurnOff( bool NoSound );
+	void				BulletTimeTurnOff( ) { BulletTimeTurnOff( false ); }
 //	bool				m_bBulletTimeOn;
-	CNetworkVar( bool, m_fBulletTimeOn );
+//	CNetworkVar( bool, m_fBulletTimeOn );
 
 	// Underwater breather device
 	virtual void		SetPlayerUnderwater( bool state );

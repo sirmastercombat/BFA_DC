@@ -436,7 +436,8 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 	else
 		Q_strncpy( szAmmo2, pAmmo, sizeof( szAmmo2 )  );
 	iAmmo2Type = GetAmmoDef()->Index( szAmmo2 );
-		KeyValues *pSights = pKeyValuesData->FindKey( "IronSight" );
+	
+	KeyValues *pSights = pKeyValuesData->FindKey( "IronSight" );
 
 	if (pSights)
 	{
@@ -457,6 +458,19 @@ void FileWeaponInfo_t::Parse( KeyValues *pKeyValuesData, const char *szWeaponNam
 		angIronsightAngOffset.Init();
 		flIronsightFOVOffset = 0.0f;
 	}
+
+	
+	m_bNoSprint		=  ( pKeyValuesData->GetInt( "NoSprint", 0 ) != 0 ) ? true : false;
+	/*
+	if (pCustomWeapon)
+	{
+		m_bNoSprint		= pCustomWeapon->GetFloat( "forward", 0.0f );
+	}
+	else
+	{
+		//note: you can set a bool here if you'd like to disable ironsights for weapons with no IronSight-key
+		m_bNoSprint = false;
+	}*/
 	// Now read the weapon sounds
 	memset( aShootSounds, 0, sizeof( aShootSounds ) );
 	KeyValues *pSoundData = pKeyValuesData->FindKey( "SoundData" );

@@ -40,6 +40,9 @@
     <Filter Include="game_controls Header Files">
       <UniqueIdentifier>{a6e83a0d-e4dd-4995-9006-3df60656a289}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\BFA DLL">
+      <UniqueIdentifier>{230c22e4-7131-472c-912c-63f80bbc450e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="achievement_notification_panel.cpp">
@@ -1490,6 +1493,9 @@
     </ClCompile>
     <ClCompile Include="toolframework_client.cpp">
       <Filter>Tool Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="BFA\hud_bullettime.cpp">
+      <Filter>Source Files\BFA DLL</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

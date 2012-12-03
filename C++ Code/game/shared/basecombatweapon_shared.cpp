@@ -2432,13 +2432,14 @@ void CBaseCombatWeapon::DisableIronsights( void )
 void CBaseCombatWeapon::SetIronsightTime( void )
 {
 	const float delta = gpGlobals->curtime - m_flIronsightedTime;
-	//note: that 2.5f should correspond to the 2.5f used in CBaseViewModel::CalcIronsights for the delta; you might want to make it a proper constant instead of some magic number
-	if ( delta < 1.5f )
-	{
-		m_flIronsightedTime = gpGlobals->curtime - ( delta / 2.5f );
-	}
-	else
-		m_flIronsightedTime = gpGlobals->curtime;
+		//note: that 2.5f should correspond to the 2.5f used in CBaseViewModel::CalcIronsights for the delta; you might want to make it a proper constant instead of some magic number
+		if ( delta < 1.5f )
+		{
+			m_flIronsightedTime = gpGlobals->curtime - ( delta / 2.5f );
+		}
+		else
+			m_flIronsightedTime = gpGlobals->curtime;
+
 }
 
 #if defined( CLIENT_DLL )

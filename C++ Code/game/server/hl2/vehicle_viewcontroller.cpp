@@ -117,6 +117,11 @@ void CPropVehicleViewController::EnterVehicle( CBasePlayer *pPlayer )
 		{
 			pHL2Player->FlashlightTurnOff();
 		}
+		
+		if ( pHL2Player->BulletTimeIsOn() )
+		{
+			pHL2Player->BulletTimeTurnOff();
+		}
 	}
 }
 
