@@ -1,1 +1,1 @@
-This is a repository for a HL2 Mod I'm working on, this is useless to most who aern't involved, so don't download.
+This is a repository for a HL2 Mod I'm working on, this is useless to most who aern't involved, so don't download. See the Wiki page for the console commands: https://github.com/sirmastercombat/BFA_DC/wiki
