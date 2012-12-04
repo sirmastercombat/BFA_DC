@@ -28,6 +28,9 @@
     <Filter Include="Tools Framework">
       <UniqueIdentifier>{185029a8-9352-4859-a777-6e31f16359ed}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\BFA DLL">
+      <UniqueIdentifier>{c43b4957-6fe6-4951-9ea0-8cd6505f2c94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\shared\achievement_saverestore.cpp">

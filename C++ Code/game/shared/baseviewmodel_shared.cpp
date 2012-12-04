@@ -404,7 +404,7 @@ void CBaseViewModel::CalcViewModelView( CBasePlayer *owner, const Vector& eyePos
 #endif
 
 	CalcIronsights( vmorigin, vmangles );
-
+	CalcLeg( vmorigin, vmangles );
 	SetLocalOrigin( vmorigin );
 	SetLocalAngles( vmangles );
 
@@ -484,6 +484,18 @@ void CBaseViewModel::CalcViewModelLag( Vector& origin, QAngle& angles, QAngle& o
 	}
 }
 
+void CBaseViewModel::CalcLeg( Vector &pos, QAngle &ang )
+{
+	CBaseCombatWeapon *pWeapon = GetOwningWeapon();
+ 
+	if ( pWeapon )
+		return;
+
+	if ( m_hOwner->IsPlayer() )
+	{
+		ang = QAngle( clamp(m_hOwner->EyeAngles().x, 0, 80), m_hOwner->EyeAngles().y, m_hOwner->EyeAngles().z);
+	}
+}
 void CBaseViewModel::CalcIronsights( Vector &pos, QAngle &ang )
 {
 	CBaseCombatWeapon *pWeapon = GetOwningWeapon();

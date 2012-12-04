@@ -253,6 +253,13 @@ public:
 	void				BulletTimeTurnOff( ) { BulletTimeTurnOff( false ); }
 //	bool				m_bBulletTimeOn;
 //	CNetworkVar( bool, m_fBulletTimeOn );
+	void				ImpactEffect( trace_t &traceHit );
+	bool				ImpactWater( const Vector &start, const Vector &end );
+	void				KickAttack( void );
+	void				KickPunt( CBaseEntity *pEntity, const Vector &vecForward, trace_t &tr );
+	void				KickIdle( void );
+	CNetworkVar( float, m_flNextKickAttack );
+	CNetworkVar( bool, m_bIsKicking );
 
 	// Underwater breather device
 	virtual void		SetPlayerUnderwater( bool state );

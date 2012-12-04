@@ -4904,6 +4904,7 @@ void CBasePlayer::Spawn( void )
 	enginesound->SetPlayerDSP( user, 0, false );
 
 	CreateViewModel();
+	CreateViewModel( 1 );
 
 	SetCollisionGroup( COLLISION_GROUP_PLAYER );
 

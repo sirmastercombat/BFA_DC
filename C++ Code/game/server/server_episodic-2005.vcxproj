@@ -107,7 +107,8 @@ if exist "$(TargetDir)"server.dll copy "$(TargetDir)"server.dll "c:\program file
       <GenerateMapFile>true</GenerateMapFile>
       <MapFileName>$(IntDir)$(TargetName).map</MapFileName>
       <SubSystem>Windows</SubSystem>
-      <BaseAddress> </BaseAddress>
+      <BaseAddress>
+      </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>
@@ -188,7 +189,8 @@ if exist "$(TargetDir)"server.pdb copy "$(TargetDir)"server.pdb "c:\program file
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <BaseAddress> </BaseAddress>
+      <BaseAddress>
+      </BaseAddress>
       <TargetMachine>MachineX86</TargetMachine>
       <LinkErrorReporting>PromptImmediately</LinkErrorReporting>
     </Link>

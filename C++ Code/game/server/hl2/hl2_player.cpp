@@ -419,7 +419,7 @@ END_SEND_TABLE()
 void CHL2_Player::Precache( void )
 {
 	BaseClass::Precache();
-
+	PrecacheModel( "models/weapons/v_kick.mdl" );
 	PrecacheScriptSound( "HL2Player.SprintNoPower" );
 	PrecacheScriptSound( "HL2Player.SprintStart" );
 	PrecacheScriptSound( "HL2Player.UseDeny" );
@@ -432,6 +432,10 @@ void CHL2_Player::Precache( void )
 	PrecacheScriptSound( "HL2Player.bullettimeon_bt" );
 	PrecacheScriptSound( "HL2Player.bullettimeoff_bt" );
 	PrecacheScriptSound( "HL2Player.heartbeatloop_bt" );
+
+	PrecacheScriptSound( "HL2Player.kick_fire" );
+	PrecacheScriptSound( "HL2Player.kick_body" );
+	PrecacheScriptSound( "HL2Player.kick_wall" );
 }
 
 //-----------------------------------------------------------------------------
@@ -890,14 +894,88 @@ void CHL2_Player::PreThink(void)
 		}
 	}
 }
+ConVar kick_throwforce( "kick_throwforce", "20" );
+ConVar kick_damage( "kick_damage", "50" );
+void CHL2_Player::KickAttack( void )
+{
+	MDLCACHE_CRITICAL_SECTION();
+	CBaseViewModel *vm = GetViewModel( 1 );
+
+	if ( vm )
+	{
+		vm->SetWeaponModel( "models/weapons/v_kick.mdl", NULL );
+	//	ShowViewModel( true );
+		vm->SetOwner(this);
+		int	idealSequence = vm->SelectWeightedSequence( ACT_VM_PRIMARYATTACK );
+		
+		if ( idealSequence >= 0 )
+		{
+			vm->SendViewModelMatchingSequence( idealSequence );
+			 m_flNextKickAttack = gpGlobals->curtime + vm->SequenceDuration( idealSequence ) - 0.1f; 
+		} 
+		QAngle	recoil = QAngle( random->RandomFloat( 1.0f, 2.0f ), random->RandomFloat( -1.0f, 1.0f ), 0 );
+		this->ViewPunch( recoil );
+
+
+		//Create our trace_t class to hold the end result
+
+		//Create Vectors for the start, stop, and direction
+		Vector vecAbsStart, vecDir;
+ 
+		//Take the Player's EyeAngles and turn it into a direction
+		AngleVectors( QAngle( clamp(EyeAngles().x, 0, 80), EyeAngles().y, EyeAngles().z), &vecDir );
+	//	Msg("Looking at Pitch: %.2f", EyeAngles().x);
+		//Get the Start/End
+		vecAbsStart = this->EyePosition();
+		Vector vecEnd;
+		VectorMA( vecAbsStart, 50, vecDir, vecEnd );
+		trace_t	tr;
+		UTIL_TraceHull( vecAbsStart, vecEnd, Vector(-16,-16,-32), Vector(36,36,36), MASK_SOLID, this, COLLISION_GROUP_NONE, &tr );
+		//For the fuck of it
+		CBaseEntity *pHurt = this->CheckTraceHullAttack( vecAbsStart, vecEnd, Vector(-16,-16,-32), Vector(36,36,36), kick_damage.GetFloat(), DMG_CRUSH, kick_throwforce.GetFloat(), true );
+//		KickPunt( pHurt, vecDir, tr );
+		EmitSound( "HL2Player.kick_fire" );
+		
+		if ( pHurt)
+		{
+			EmitSound( "HL2Player.kick_body" );
+		}
+	}
+}
 
 void CHL2_Player::PostThink( void )
 {
 	BaseClass::PostThink();
-
+	CBaseViewModel *vm = GetViewModel( 1 );
 	if ( !g_fGameOver && !IsPlayerLockedInPlace() && IsAlive() )
 	{
 		 HandleAdmireGlovesAnimation();
+	}
+
+	if ( m_afButtonReleased & IN_ALT2 /* && m_flNextKickAttack < gpGlobals->curtime  && !m_bIsKicking*/ )
+	{
+		KickAttack();
+		m_bIsKicking = true;
+	}
+
+	if (m_flNextKickAttack < gpGlobals->curtime )
+	{
+		m_bIsKicking = false;
+		int	idealSequence = vm->SelectWeightedSequence( ACT_VM_IDLE );
+		
+		if ( idealSequence >= 0 )
+		{
+			vm->SendViewModelMatchingSequence( idealSequence );
+		}
+	}
+
+	if (m_bIsKicking)
+	{
+		this->AddFlag( FL_ATCONTROLS );
+	}
+	else
+	{
+		this->RemoveFlag( FL_ATCONTROLS );
 	}
 }
 
@@ -1139,6 +1217,9 @@ void CHL2_Player::Spawn(void)
 	GetPlayerProxy();
 
 	SetFlashlightPowerDrainScale( 1.0f );
+
+
+	m_flNextKickAttack		= gpGlobals->curtime;
 
 	BulletTimeTurnOff( true ); //MAKE SURE WE RESUME NORMAL FLOW OF TIME!
 }
