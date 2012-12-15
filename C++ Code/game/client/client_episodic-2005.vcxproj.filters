@@ -1497,6 +1497,12 @@
     <ClCompile Include="BFA\hud_bullettime.cpp">
       <Filter>Source Files\BFA DLL</Filter>
     </ClCompile>
+    <ClCompile Include="..\shared\bfa\singleplayer_animstate.cpp">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="BFA\ge_screeneffects.cpp">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="achievement_notification_panel.h">
@@ -3253,6 +3259,12 @@
     </ClInclude>
     <ClInclude Include="game_controls\vguitextwindow.h">
       <Filter>game_controls Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\shared\bfa\singleplayer_animstate.h">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClInclude>
+    <ClInclude Include="BFA\ge_screeneffects.h">
+      <Filter>Source Files\BFA DLL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

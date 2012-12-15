@@ -107,6 +107,9 @@ ConVar sv_stickysprint("sv_stickysprint", "0", FCVAR_ARCHIVE | FCVAR_ARCHIVE_XBO
 #define	FLASH_DRAIN_TIME	 1.1111	// 100 units / 90 secs
 #define	FLASH_CHARGE_TIME	 50.0f	// 100 units / 2 secs
 
+#define PLAYER_MODEL "models/player/Anton.mdl"
+
+ConVar cl_playermodel( "cl_playermodel", PLAYER_MODEL, FCVAR_ARCHIVE );
 
 //==============================================================================================
 // CAPPED PLAYER PHYSICS DAMAGE TABLE
@@ -383,6 +386,10 @@ END_DATADESC()
 
 CHL2_Player::CHL2_Player()
 {
+	// Here we create and init the player animation state.
+	m_pPlayerAnimState = CreatePlayerAnimationState(this);
+	m_angEyeAngles.Init();
+ 
 	m_nNumMissPositions	= 0;
 	m_pPlayerAISquad = 0;
 	m_bSprintEnabled = true;
@@ -420,6 +427,9 @@ void CHL2_Player::Precache( void )
 {
 	BaseClass::Precache();
 	PrecacheModel( "models/weapons/v_kick.mdl" );
+	PrecacheModel( "models/combine_soldier.mdl" );
+	PrecacheModel(PLAYER_MODEL); //Just incase
+	PrecacheModel(cl_playermodel.GetString());
 	PrecacheScriptSound( "HL2Player.SprintNoPower" );
 	PrecacheScriptSound( "HL2Player.SprintStart" );
 	PrecacheScriptSound( "HL2Player.UseDeny" );
@@ -894,18 +904,28 @@ void CHL2_Player::PreThink(void)
 		}
 	}
 }
-ConVar kick_throwforce( "kick_throwforce", "20" );
-ConVar kick_damage( "kick_damage", "50" );
+ConVar kick_throwforce( "kick_throwforce", "20", FCVAR_ARCHIVE, "The default throw force of kick without player velocity." );
+ConVar kick_damage( "kick_damage", "50", FCVAR_ARCHIVE, "The default damage of kick without player velocity." );
+
+ConVar kick_throwforce_mult( "kick_throwforce_mult", "1", FCVAR_ARCHIVE, "The multiplier for kick force." );
+ConVar kick_damage_mult( "kick_damage_mult", "1", FCVAR_ARCHIVE, "The multiplier for kick damage." );
+
+ConVar kick_throwforce_div( "kick_throwforce_div", "48", FCVAR_ARCHIVE, "Divide the velocity by this." );
+ConVar kick_damage_div( "kick_damage_div", "48", FCVAR_ARCHIVE, "Divide the velocity by this." );
+
 void CHL2_Player::KickAttack( void )
 {
 	MDLCACHE_CRITICAL_SECTION();
-	CBaseViewModel *vm = GetViewModel( 1 );
+	CBaseViewModel *vm = GetViewModel( 2 );
 
 	if ( vm )
 	{
 		vm->SetWeaponModel( "models/weapons/v_kick.mdl", NULL );
 	//	ShowViewModel( true );
 		vm->SetOwner(this);
+
+	//	CBaseViewModel *vm = GetViewModel( 2 );
+
 		int	idealSequence = vm->SelectWeightedSequence( ACT_VM_PRIMARYATTACK );
 		
 		if ( idealSequence >= 0 )
@@ -917,6 +937,52 @@ void CHL2_Player::KickAttack( void )
 		this->ViewPunch( recoil );
 
 
+		// Trace up or down based on where the enemy is...
+		// But only if we're basically facing that direction
+		Vector vecDirection;
+		AngleVectors( QAngle( clamp(EyeAngles().x, 20, 80), EyeAngles().y, EyeAngles().z), &vecDirection );
+
+		CBaseEntity *pEnemy = MyNPCPointer() ? MyNPCPointer()->GetEnemy() : NULL;
+		if ( pEnemy )
+		{
+			Vector vecDelta;
+			VectorSubtract( pEnemy->WorldSpaceCenter(), Weapon_ShootPosition(), vecDelta );
+			VectorNormalize( vecDelta );
+		
+			Vector2D vecDelta2D = vecDelta.AsVector2D();
+			Vector2DNormalize( vecDelta2D );
+			if ( DotProduct2D( vecDelta2D, vecDirection.AsVector2D() ) > 0.8f )
+			{
+				vecDirection = vecDelta;
+			}
+		}
+
+		Vector vecEnd;
+		VectorMA( Weapon_ShootPosition(), 50, vecDirection, vecEnd );
+		trace_t tr;
+		UTIL_TraceHull( Weapon_ShootPosition(), vecEnd, Vector(-8,-8,-16), Vector(8,8,16), MASK_SHOT_HULL, this, COLLISION_GROUP_NONE, &tr );
+		// did I hit someone?
+		float KickDamageMult = 	kick_damage.GetFloat() + ( kick_damage_mult.GetFloat() * ((fabs(GetAbsVelocity().x) + fabs(GetAbsVelocity().y) + fabs(GetAbsVelocity().z)) / kick_damage_div.GetFloat()));
+		float KickThrowForceMult = kick_throwforce.GetFloat() + ( kick_throwforce_mult.GetFloat() * ((fabs(GetAbsVelocity().x) + fabs(GetAbsVelocity().y) + fabs(GetAbsVelocity().z)) / kick_throwforce_div.GetFloat()));
+		
+		Msg("Kicking at %.2f of damage!", KickDamageMult);
+		Msg("Kicking at %.2f of force!", KickThrowForceMult);
+		if ( tr.m_pEnt )
+		{
+			CBaseEntity *pHurt = this->CheckTraceHullAttack( Weapon_ShootPosition(), vecEnd, Vector(-16,-16,-16), Vector(16,16,16), KickDamageMult, DMG_CRUSH, KickThrowForceMult, true );
+	
+			// play sound
+			EmitSound( "HL2Player.kick_body" );
+			// Fake a trace impact, so the effects work out like a player's crowbaw
+			trace_t traceHit;
+			UTIL_TraceLine( Weapon_ShootPosition(), tr.m_pEnt->GetAbsOrigin(), MASK_SHOT_HULL, this, COLLISION_GROUP_NONE, &traceHit );
+			ImpactEffect( traceHit );
+		}
+	//	else
+	//	{
+	//		WeaponSound( MELEE_MISS );
+	//	}
+		/*
 		//Create our trace_t class to hold the end result
 
 		//Create Vectors for the start, stop, and direction
@@ -924,13 +990,14 @@ void CHL2_Player::KickAttack( void )
  
 		//Take the Player's EyeAngles and turn it into a direction
 		AngleVectors( QAngle( clamp(EyeAngles().x, 0, 80), EyeAngles().y, EyeAngles().z), &vecDir );
+
 	//	Msg("Looking at Pitch: %.2f", EyeAngles().x);
 		//Get the Start/End
-		vecAbsStart = this->EyePosition();
+		vecAbsStart = this->Weapon_ShootPosition();
 		Vector vecEnd;
 		VectorMA( vecAbsStart, 50, vecDir, vecEnd );
-		trace_t	tr;
-		UTIL_TraceHull( vecAbsStart, vecEnd, Vector(-16,-16,-32), Vector(36,36,36), MASK_SOLID, this, COLLISION_GROUP_NONE, &tr );
+	//	trace_t	tr;
+	//	UTIL_TraceHull( vecAbsStart, vecEnd, Vector(-16,-16,-16), Vector(36,36,36), MASK_SOLID, this, COLLISION_GROUP_NONE, &tr );
 		//For the fuck of it
 		CBaseEntity *pHurt = this->CheckTraceHullAttack( vecAbsStart, vecEnd, Vector(-16,-16,-32), Vector(36,36,36), kick_damage.GetFloat(), DMG_CRUSH, kick_throwforce.GetFloat(), true );
 //		KickPunt( pHurt, vecDir, tr );
@@ -939,46 +1006,292 @@ void CHL2_Player::KickAttack( void )
 		if ( pHurt)
 		{
 			EmitSound( "HL2Player.kick_body" );
-		}
+			// Fake a trace impact, so the effects work out like a player's crowbaw
+			trace_t traceHit;
+			UTIL_TraceLine( this->Weapon_ShootPosition(), pHurt->GetAbsOrigin(), MASK_SHOT_HULL, this, COLLISION_GROUP_NONE, &traceHit );
+			ImpactEffect( traceHit );
+		}*/
 	}
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+// Input  : &traceHit - 
+//-----------------------------------------------------------------------------
+bool CHL2_Player::ImpactWater( const Vector &start, const Vector &end )
+{
+	//FIXME: This doesn't handle the case of trying to splash while being underwater, but that's not going to look good
+	//		 right now anyway...
+	
+	// We must start outside the water
+	if ( UTIL_PointContents( start ) & (CONTENTS_WATER|CONTENTS_SLIME))
+		return false;
+
+	// We must end inside of water
+	if ( !(UTIL_PointContents( end ) & (CONTENTS_WATER|CONTENTS_SLIME)))
+		return false;
+
+	trace_t	waterTrace;
+
+	UTIL_TraceLine( start, end, (CONTENTS_WATER|CONTENTS_SLIME), this, COLLISION_GROUP_NONE, &waterTrace );
+
+	if ( waterTrace.fraction < 1.0f )
+	{
+		CEffectData	data;
+
+		data.m_fFlags  = 0;
+		data.m_vOrigin = waterTrace.endpos;
+		data.m_vNormal = waterTrace.plane.normal;
+		data.m_flScale = 8.0f;
+
+		// See if we hit slime
+		if ( waterTrace.contents & CONTENTS_SLIME )
+		{
+			data.m_fFlags |= FX_WATER_IN_SLIME;
+		}
+
+		DispatchEffect( "watersplash", data );			
+	}
+
+	return true;
+}
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void CHL2_Player::ImpactEffect( trace_t &traceHit )
+{
+	// See if we hit water (we don't do the other impact effects in this case)
+	if ( ImpactWater( traceHit.startpos, traceHit.endpos ) )
+		return;
+
+	//FIXME: need new decals
+	UTIL_ImpactTrace( &traceHit, DMG_CRUSH );
 }
 
 void CHL2_Player::PostThink( void )
 {
 	BaseClass::PostThink();
-	CBaseViewModel *vm = GetViewModel( 1 );
+
+	m_angEyeAngles = EyeAngles();
+ 
+	QAngle angles = GetLocalAngles();
+	angles[PITCH] = 0;
+	SetLocalAngles( angles );
+ 
+	m_pPlayerAnimState->Update();
+
 	if ( !g_fGameOver && !IsPlayerLockedInPlace() && IsAlive() )
 	{
 		 HandleAdmireGlovesAnimation();
 	}
 
-	if ( m_afButtonReleased & IN_ALT2 /* && m_flNextKickAttack < gpGlobals->curtime  && !m_bIsKicking*/ )
+	if ( m_afButtonReleased & IN_ALT2 && m_flNextKickAttack / 2.0f < gpGlobals->curtime /* && m_flNextKickAttack < gpGlobals->curtime  && !m_bIsKicking*/ )
 	{
 		KickAttack();
 		m_bIsKicking = true;
 	}
 
-	if (m_flNextKickAttack < gpGlobals->curtime )
+	if ( m_flNextKickAttack < gpGlobals->curtime )
 	{
 		m_bIsKicking = false;
-		int	idealSequence = vm->SelectWeightedSequence( ACT_VM_IDLE );
+		CBaseViewModel *vm = GetViewModel( 2 );
 		
-		if ( idealSequence >= 0 )
+		if ( vm )
 		{
-			vm->SendViewModelMatchingSequence( idealSequence );
+			int	idealSequence = vm->SelectWeightedSequence( ACT_VM_IDLE );
+		
+			if ( idealSequence >= 0 )
+			{
+				vm->SendViewModelMatchingSequence( idealSequence );
+			}
 		}
 	}
 
 	if (m_bIsKicking)
 	{
-		this->AddFlag( FL_ATCONTROLS );
+//		this->AddFlag( FL_ATCONTROLS );
 	}
 	else
 	{
-		this->RemoveFlag( FL_ATCONTROLS );
+//		this->RemoveFlag( FL_ATCONTROLS );
 	}
 }
-
+// Set the activity based on an event or current state
+void CHL2_Player::SetAnimation( PLAYER_ANIM playerAnim )
+{
+    int animDesired;
+ 
+    float speed;
+//	CBaseViewModel *Leg = GetViewModel( 1 );
+    speed = GetAbsVelocity().Length2D();
+ 
+    if ( GetFlags() & ( FL_FROZEN | FL_ATCONTROLS ) )
+    {
+        speed = 0;
+        playerAnim = PLAYER_IDLE;
+    }
+ 
+    Activity idealActivity = ACT_HL2MP_RUN;
+ 
+    if ( playerAnim == PLAYER_JUMP )
+    {
+        if ( HasWeapons() )
+            idealActivity = ACT_HL2MP_JUMP;
+        else
+            idealActivity = ACT_JUMP;
+    }
+    else if ( playerAnim == PLAYER_DIE )
+    {
+        if ( m_lifeState == LIFE_ALIVE )
+        {
+            return;
+        }
+    }
+    else if ( playerAnim == PLAYER_ATTACK1 )
+    {
+        if ( GetActivity( ) == ACT_HOVER    ||
+             GetActivity( ) == ACT_SWIM        ||
+             GetActivity( ) == ACT_HOP        ||
+             GetActivity( ) == ACT_LEAP        ||
+             GetActivity( ) == ACT_DIESIMPLE )
+        {
+            idealActivity = GetActivity( );
+        }
+        else
+        {
+            idealActivity = ACT_HL2MP_GESTURE_RANGE_ATTACK;
+        }
+    }
+    else if ( playerAnim == PLAYER_RELOAD )
+    {
+        idealActivity = ACT_HL2MP_GESTURE_RELOAD;
+    }
+    else if ( playerAnim == PLAYER_IDLE || playerAnim == PLAYER_WALK )
+    {
+        if ( !( GetFlags() & FL_ONGROUND ) && ( GetActivity( ) == ACT_HL2MP_JUMP || GetActivity( ) == ACT_JUMP ) )    // Still jumping
+        {
+            idealActivity = GetActivity( );
+        }   
+        else if ( GetWaterLevel() > 1 )
+        {
+            if ( speed == 0 )
+            {
+                if ( HasWeapons() )
+                    idealActivity = ACT_HL2MP_IDLE;
+                else
+                    idealActivity = ACT_IDLE;
+            }
+            else
+            {
+                if ( HasWeapons() )
+                    idealActivity = ACT_HL2MP_RUN;
+                else
+                    idealActivity = ACT_RUN;
+            }
+        }
+        else
+        {
+            if ( GetFlags() & FL_DUCKING )
+            {
+                if ( speed > 0 )
+                {
+                    if ( HasWeapons() )
+                        idealActivity = ACT_HL2MP_WALK_CROUCH;
+                    else
+                        idealActivity = ACT_WALK_CROUCH;
+                }
+                else
+                {
+                    if ( HasWeapons() )
+                        idealActivity = ACT_HL2MP_IDLE_CROUCH;
+                    else
+                        idealActivity = ACT_COVER_LOW;
+                }
+            }
+            else
+            {
+                if ( speed > 0 )
+                {
+                    {
+                        if ( HasWeapons() )
+                            idealActivity = ACT_HL2MP_RUN;
+                        else
+                        {
+                            if ( speed > HL2_WALK_SPEED + 20.0f )
+                                idealActivity = ACT_RUN;
+                            else
+                                idealActivity = ACT_WALK;
+                        }
+                    }
+                }
+                else
+                {
+                    if ( HasWeapons() )
+                    idealActivity = ACT_HL2MP_IDLE;
+                    else
+                    idealActivity = ACT_IDLE;
+                }
+            }
+        }
+ 
+        //idealActivity = TranslateTeamActivity( idealActivity );
+    }
+ 
+    if ( IsInAVehicle() )
+    {
+        idealActivity = ACT_COVER_LOW;
+    }
+ 
+    if ( idealActivity == ACT_HL2MP_GESTURE_RANGE_ATTACK )
+    {
+        RestartGesture( Weapon_TranslateActivity( idealActivity ) );
+ 
+        // FIXME: this seems a bit wacked
+        Weapon_SetActivity( Weapon_TranslateActivity( ACT_RANGE_ATTACK1 ), 0 );
+ 
+        return;
+    }
+    else if ( idealActivity == ACT_HL2MP_GESTURE_RELOAD )
+    {
+        RestartGesture( Weapon_TranslateActivity( idealActivity ) );
+        return;
+    }
+    else
+    {
+        SetActivity( idealActivity );
+ 
+        animDesired = SelectWeightedSequence( Weapon_TranslateActivity ( idealActivity ) );
+ 
+        if (animDesired == -1)
+        {
+            animDesired = SelectWeightedSequence( idealActivity );
+ 
+            if ( animDesired == -1 )
+            {
+                animDesired = 0;
+            }
+        }
+ 
+        // Already using the desired animation?
+        if ( GetSequence() == animDesired )
+            return;
+ 
+        m_flPlaybackRate = 1.0;
+        ResetSequence( animDesired );
+        SetCycle( 0 );
+        return;
+    }
+ 
+    // Already using the desired animation?
+    if ( GetSequence() == animDesired )
+        return;
+ 
+    //Msg( "Set animation to %d\n", animDesired );
+    // Reset to first frame of desired animation
+    ResetSequence( animDesired );
+    SetCycle( 0 );
+}
 void CHL2_Player::StartAdmireGlovesAnimation( void )
 {
 	MDLCACHE_CRITICAL_SECTION();
@@ -1184,11 +1497,16 @@ void CHL2_Player::PlayerRunCommand(CUserCmd *ucmd, IMoveHelper *moveHelper)
 void CHL2_Player::Spawn(void)
 {
 
-#ifndef HL2MP
-#ifndef PORTAL
-	SetModel( "models/player.mdl" );
-#endif
-#endif
+//#ifndef HL2MP
+//#ifndef PORTAL
+	SetModel( cl_playermodel.GetString() );
+
+//	CBaseViewModel *Leg = GetViewModel( 1 );
+//	Leg->SetWeaponModel( PLAYER_MODEL, NULL );
+////	ShowViewModel( true );
+//	vm->SetOwner(this);
+//#endif
+//#endif
 
 	BaseClass::Spawn();
 
@@ -1461,6 +1779,12 @@ void CHL2_Player::InitVCollision( const Vector &vecAbsOrigin, const Vector &vecA
 
 CHL2_Player::~CHL2_Player( void )
 {
+	// Clears the animation state.
+	if ( m_pPlayerAnimState != NULL )
+	{
+		m_pPlayerAnimState->Release();
+		m_pPlayerAnimState = NULL;
+	}
 }
 
 //-----------------------------------------------------------------------------
@@ -2169,48 +2493,10 @@ void CHL2_Player::FlashlightTurnOff( void )
 	flashlightoff.SetFloat( m_HL2Local.m_flSuitPower / 100.0f );
 	FirePlayerProxyOutput( "OnFlashlightOff", flashlightoff, this, this );
 }
-/*
-BULLET TIME BITCH!
-*/
-/*
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
-void CHL2_Player::BulletTimeTurnOn( void )
-{
-	if( m_bBulletTimeDisabled )
-		return;
 
-#ifdef HL2_DLL
-	if( !IsSuitEquipped() )
-		return;
-#endif
-
-	EmitSound( "HL2Player.FlashLightOn" );
-	m_fBulletTimeOn = true;
-	variant_t bullettimeon;
-	bullettimeon.SetFloat( m_HL2Local.m_flSuitPower / 100.0f );
-	FirePlayerProxyOutput( "OnBulletTimeTurnOn", bullettimeon, this, this );
-}
-
-
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
-void CHL2_Player::BulletTimeTurnOff( void )
-{
-
-	EmitSound( "HL2Player.FlashLightOff" );
-	m_fBulletTimeOn = false;
-	variant_t bullettimeoff;
-	bullettimeoff.SetFloat( m_HL2Local.m_flSuitPower / 100.0f );
-	FirePlayerProxyOutput( "OnBulletTimeTurnOff", bullettimeoff, this, this );
-}
-*/
-//-----------------------------------------------------------------------------
-//-----------------------------------------------------------------------------
 int CHL2_Player::BulletTimeIsOn( void )
 {
 	return m_HL2Local.m_fBulletTimeOn;
@@ -2229,21 +2515,19 @@ void CHL2_Player::BulletTimeTurnOn( void )
 
 	if( !SuitPower_AddDevice( SuitDeviceBulletTime ) )
 		return;
-	//Stupid me, this never gets called >.>
-//	#ifdef CLIENT_DLL
-//		engine->ClientCmd_Unrestricted("host_timescale 0.2");
-//	#endif
 
 	CPASAttenuationFilter filter( this );
 	filter.UsePredictionRules();
 	EmitSound( filter, entindex(), "HL2Player.bullettimeon_bt" );
-//	engine->ClientCommand( INDEXENT( entindex() ), "bulletimeon" );
-	engine->ServerCommand("sv_cheats 1; host_timescale 0.9; wait; wait; host_timescale 0.8; wait; wait; host_timescale 0.7; wait; wait; host_timescale 0.6; wait; wait; host_timescale 0.4; wait; wait; host_timescale 0.3; wait; wait;  host_timescale 0.2;\n");
+	ConVar *BT_host_timescale = cvar->FindVar( "host_timescale" );
+	if (BT_host_timescale)
+		BT_host_timescale->AddFlags(~FCVAR_CHEAT);
+	engine->ServerCommand(" host_timescale 0.9; wait; wait; host_timescale 0.8; wait; wait; host_timescale 0.7; wait; wait; host_timescale 0.6; wait; wait; host_timescale 0.4; wait; wait; host_timescale 0.3; wait; wait;  host_timescale 0.2;\n");
+
 	EmitSound( filter, entindex(), "HL2Player.heartbeatloop_bt" );
 
 	m_HL2Local.m_fBulletTimeOn = true;
 }
-
 
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
@@ -2260,11 +2544,11 @@ void CHL2_Player::BulletTimeTurnOff( bool NoSound )
 		EmitSound( filter, entindex(), "HL2Player.bullettimeoff_bt" );
 	}
 	StopSound( entindex(), "HL2Player.heartbeatloop_bt" );
-//	engine->ClientCommand( INDEXENT( entindex() ), "bulletimeoff" );
-	engine->ServerCommand("sv_cheats 1; host_timescale 0.2; wait; host_timescale 0.3; wait; host_timescale 0.4; wait; host_timescale 0.5; wait; host_timescale 0.6; wait; host_timescale 0.7; wait; host_timescale 0.8; wait; host_timescale 0.9; wait;  host_timescale 1.0;\n");
-//	#ifdef CLIENT_DLL
-//		engine->ClientCmd_Unrestricted("host_timescale 1.0");
-//	#endif
+	ConVar *BT_host_timescale = cvar->FindVar( "host_timescale" );
+	if (BT_host_timescale)
+		BT_host_timescale->AddFlags(FCVAR_CHEAT);
+	engine->ServerCommand("host_timescale 0.2; wait; host_timescale 0.3; wait; host_timescale 0.4; wait; host_timescale 0.5; wait; host_timescale 0.6; wait; host_timescale 0.7; wait; host_timescale 0.8; wait; host_timescale 0.9; wait;  host_timescale 1.0;\n");
+
 	m_HL2Local.m_fBulletTimeOn = false;
 }
 

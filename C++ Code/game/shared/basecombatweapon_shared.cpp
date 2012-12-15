@@ -612,7 +612,7 @@ bool CBaseCombatWeapon::CanBeSelected( void )
 	if ( !VisibleInWeaponSelection() )
 		return false;
 
-	return HasAmmo();
+	return true;//HasAmmo();
 }
 
 //-----------------------------------------------------------------------------
@@ -1444,6 +1444,8 @@ selects and deploys each weapon as you pass it. (sjb)
 bool CBaseCombatWeapon::Deploy( )
 {
 	MDLCACHE_CRITICAL_SECTION();
+	CBaseCombatCharacter *pOwner = GetOwner();
+
 	return DefaultDeploy( (char*)GetViewModel(), (char*)GetWorldModel(), GetDrawActivity(), (char*)GetAnimPrefix() );
 }
 

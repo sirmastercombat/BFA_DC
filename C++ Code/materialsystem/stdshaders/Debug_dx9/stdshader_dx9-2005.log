@@ -1,0 +1,13 @@
+﻿Build started 12/8/2012 9:39:50 PM.
+     1>Project "C:\SourceSDK.Source_Code\BFA_NEW\BFA_DC\C++ Code\materialsystem\stdshaders\stdshader_dx9-2005.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug_dx9\stdshader_dx9.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\common /I..\..\public /I..\..\public\tier0 /I..\..\public\tier1 /Ifxctmp9 /Ivshtmp9 /I..\..\dx9sdk\include /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _WIN32 /D _DEBUG /D DEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D STDSHADER_DX9_DLL_EXPORT /D FAST_MATERIALVAR_ACCESS /D _WINDLL /D _MBCS /GF /Gm /RTC1 /MTd /GS- /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo"Debug_dx9\\" /Fd"Debug_dx9\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt aftershock.cpp aftershock_helper.cpp BaseVSShader.cpp Bloom.cpp cable_dx9.cpp cloak_blended_pass_helper.cpp cloak_dx9_helper.cpp core_dx9.cpp dx8fallbacks.cpp emissive_scroll_blended_pass_helper.cpp eye_refract.cpp eye_refract_helper.cpp eyeball.cpp eyeglint_dx9.cpp eyes.cpp eyes_dx8_dx9_helper.cpp eyes_dx9.cpp flesh_interior_blended_pass_helper.cpp lightmappedgeneric_decal.cpp lightmappedgeneric_dx9_helper.cpp lightmappedreflective.cpp lightmappedtwotexture.cpp refract.cpp refract_dx9_helper.cpp screenspace_general.cpp skin_dx9_helper.cpp spritecard.cpp teeth.cpp unlitgeneric_dx9.cpp unlittwotexture_dx9.cpp vertexlitgeneric_dx9.cpp vertexlitgeneric_dx9_helper.cpp vortwarp_dx9.cpp water.cpp worldtwotextureblend.cpp worldvertexalpha.cpp worldvertextransition.cpp worldvertextransition_dx8_helper.cpp ..\..\tier1\checksum_crc.cpp ..\..\tier1\checksum_md5.cpp ..\shader_dll_verify.cpp
+         shader_dll_verify.cpp
+         checksum_md5.cpp
+         checksum_crc.cpp
+         worldvertextransition_dx8_helper.cpp
+     1>c:\sourcesdk.source_code\bfa_new\bfa_dc\c++ code\materialsystem\stdshaders\worldvertextransition_dx8_helper.cpp(11): fatal error C1083: Cannot open include file: 'SDK_worldvertextransition.inc': No such file or directory
+         worldvertextransition.cpp
+         worldvertexalpha.cpp

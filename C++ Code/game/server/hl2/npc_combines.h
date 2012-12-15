@@ -30,6 +30,7 @@ public:
 	void		BuildScheduleTestBits( void );
 	int			SelectSchedule ( void );
 	float		GetHitgroupDamageMultiplier( int iHitGroup, const CTakeDamageInfo &info );
+	void		TraceAttack( const CTakeDamageInfo &info, const Vector &vecDir, trace_t *ptr );
 	void		HandleAnimEvent( animevent_t *pEvent );
 	void		OnChangeActivity( Activity eNewActivity );
 	void		Event_Killed( const CTakeDamageInfo &info );
@@ -43,7 +44,8 @@ public:
 	bool		IsHeavyDamage( const CTakeDamageInfo &info );
 
 	virtual	bool		AllowedToIgnite( void ) { return true; }
-
+protected:
+	bool m_bHeadShot;
 private:
 	bool		ShouldHitPlayer( const Vector &targetDir, float targetDist );
 

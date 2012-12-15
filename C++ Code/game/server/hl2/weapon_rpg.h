@@ -44,6 +44,7 @@ public:
 	void	Precache( void );
 	void	MissileTouch( CBaseEntity *pOther );
 	void	Explode( void );
+	void	StrikeDown( void );
 	void	ShotDown( void );
 	void	AccelerateThink( void );
 	void	AugerThink( void );
@@ -84,6 +85,8 @@ protected:
 	float					m_flAugerTime;		// Amount of time to auger before blowing up anyway
 	float					m_flMarkDeadTime;
 	float					m_flDamage;
+	
+	bool					m_bJavelinCrush;
 
 	struct CustomDetonator_t
 	{

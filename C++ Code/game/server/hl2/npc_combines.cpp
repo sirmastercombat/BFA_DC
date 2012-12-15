@@ -205,11 +205,17 @@ int CNPC_CombineS::SelectSchedule ( void )
 //-----------------------------------------------------------------------------
 float CNPC_CombineS::GetHitgroupDamageMultiplier( int iHitGroup, const CTakeDamageInfo &info )
 {
+	/*
+	static int BodyGroup_LeftArm = FindBodygroupByName("left_arm"); // calculate this value once
+	static int BodyGroup_RightArm = FindBodygroupByName("right_arm"); // calculate this value once
+	static int BodyGroup_LeftLeg = FindBodygroupByName("left_leg"); // calculate this value once
+	static int BodyGroup_RightLeg = FindBodygroupByName("right_leg"); // calculate this value once
+	*/
 	switch( iHitGroup )
 	{
 	case HITGROUP_HEAD:
 		{
-			// Soldiers take double headshot damage
+
 			return 2.0f;
 		}
 	}
@@ -217,7 +223,44 @@ float CNPC_CombineS::GetHitgroupDamageMultiplier( int iHitGroup, const CTakeDama
 	return BaseClass::GetHitgroupDamageMultiplier( iHitGroup, info );
 }
 
+void CNPC_CombineS::TraceAttack( const CTakeDamageInfo &info, const Vector &vecDir, trace_t *ptr )
+{
+	CTakeDamageInfo infoCopy = info;
 
+	// Keep track of headshots so we can determine whether to pop off our headcrab.
+	if (ptr->hitgroup == HITGROUP_HEAD)
+	{
+		m_bHeadShot = true;
+	}
+	static int BodyGroup_Head = FindBodygroupByName("head"); // calculate this value once
+	static int BodyGroup_LeftArm = FindBodygroupByName("left_arm"); // calculate this value once
+	static int BodyGroup_RightArm = FindBodygroupByName("right_arm"); // calculate this value once
+	static int BodyGroup_LeftLeg = FindBodygroupByName("left_leg"); // calculate this value once
+	static int BodyGroup_RightLeg = FindBodygroupByName("right_leg"); // calculate this value once
+	// Keep track of headshots so we can determine whether to pop off our headcrab.
+//	if (ptr->hitgroup == HITGROUP_HEAD)
+	
+	if( ptr->hitgroup == HITGROUP_HEAD)
+		this->SetBodygroup( BodyGroup_Head, 1 ); // Headless
+	if( ptr->hitgroup == HITGROUP_LEFTARM )
+		this->SetBodygroup( BodyGroup_LeftArm, 1 ); // Headless
+	if( ptr->hitgroup == HITGROUP_RIGHTARM )
+		this->SetBodygroup( BodyGroup_RightArm, 1 ); // Headless
+	if( ptr->hitgroup == HITGROUP_LEFTLEG )
+		this->SetBodygroup( BodyGroup_LeftLeg, 1 ); // Headless
+	if( ptr->hitgroup == HITGROUP_RIGHTLEG )
+		this->SetBodygroup( BodyGroup_RightLeg, 1 ); // Headless
+		
+	if( infoCopy.GetDamageType() & DMG_BUCKSHOT )
+	{
+		// Zombie gets across-the-board damage reduction for buckshot. This compensates for the recent changes which
+		// make the shotgun much more powerful, and returns the zombies to a level that has been playtested extensively.(sjb)
+		// This normalizes the buckshot damage to what it used to be on normal (5 dmg per pellet. Now it's 8 dmg per pellet). 
+		infoCopy.ScaleDamage( 0.625 );
+	}
+
+	BaseClass::TraceAttack( infoCopy, vecDir, ptr );
+}
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------
 void CNPC_CombineS::HandleAnimEvent( animevent_t *pEvent )

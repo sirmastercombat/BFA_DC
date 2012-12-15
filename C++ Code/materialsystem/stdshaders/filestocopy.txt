@@ -1,0 +1,5 @@
+..\..\dx9sdk\utilities\dx_proxy.dll 
+c:\program files (x86)\steam\steamapps\sirmastercombat\sourcesdk/bin/orangebox/bin\shadercompile.exe 
+c:\program files (x86)\steam\steamapps\sirmastercombat\sourcesdk/bin/orangebox/bin\shadercompile_dll.dll 
+c:\program files (x86)\steam\steamapps\sirmastercombat\sourcesdk/bin/orangebox/bin\vstdlib.dll 
+c:\program files (x86)\steam\steamapps\sirmastercombat\sourcesdk/bin/orangebox/bin\tier0.dll 

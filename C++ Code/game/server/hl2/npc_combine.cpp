@@ -137,6 +137,7 @@ DEFINE_FIELD( m_nKickDamage, FIELD_INTEGER ),
 DEFINE_FIELD( m_vecTossVelocity, FIELD_VECTOR ),
 DEFINE_FIELD( m_hForcedGrenadeTarget, FIELD_EHANDLE ),
 DEFINE_FIELD( m_bShouldPatrol, FIELD_BOOLEAN ),
+//DEFINE_FIELD( m_bWearingMask, FIELD_BOOLEAN ),
 DEFINE_FIELD( m_bFirstEncounter, FIELD_BOOLEAN ),
 DEFINE_FIELD( m_flNextPainSoundTime, FIELD_TIME ),
 DEFINE_FIELD( m_flNextAlertSoundTime, FIELD_TIME ),
@@ -163,6 +164,10 @@ DEFINE_INPUTFUNC( FIELD_VOID,	"LookOn",	InputLookOn ),
 DEFINE_INPUTFUNC( FIELD_VOID,	"StartPatrolling",	InputStartPatrolling ),
 DEFINE_INPUTFUNC( FIELD_VOID,	"StopPatrolling",	InputStopPatrolling ),
 
+DEFINE_INPUTFUNC( FIELD_VOID,	"GasmaskOn",	InputOnGasMask ),
+DEFINE_INPUTFUNC( FIELD_VOID,	"GasmaskOff",	InputOffGasMask ),
+
+
 DEFINE_INPUTFUNC( FIELD_STRING,	"Assault", InputAssault ),
 
 DEFINE_INPUTFUNC( FIELD_VOID,	"HitByBugbait",		InputHitByBugbait ),
@@ -175,6 +180,8 @@ DEFINE_FIELD( m_vecAltFireTarget, FIELD_VECTOR ),
 
 DEFINE_KEYFIELD( m_iTacticalVariant, FIELD_INTEGER, "tacticalvariant" ),
 DEFINE_KEYFIELD( m_iPathfindingVariant, FIELD_INTEGER, "pathfindingvariant" ),
+
+DEFINE_KEYFIELD( m_bWearingMask, FIELD_INTEGER, "gasmask" ),
 
 END_DATADESC()
 
@@ -216,7 +223,21 @@ void CNPC_Combine::InputLookOn( inputdata_t &inputdata )
 {
 	m_spawnflags &= ~SF_COMBINE_NO_LOOK;
 }
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void CNPC_Combine::InputOnGasMask( inputdata_t &inputdata )
+{
+	m_flFieldOfView	= VIEW_FIELD_ULTRA_NARROW;
+}
 
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+void CNPC_Combine::InputOffGasMask( inputdata_t &inputdata )
+{
+	m_flFieldOfView	= VIEW_FIELD_NARROW;
+}
 //-----------------------------------------------------------------------------
 // Purpose: 
 //-----------------------------------------------------------------------------
@@ -310,7 +331,21 @@ void CNPC_Combine::Spawn( void )
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
 	SetMoveType( MOVETYPE_STEP );
 	SetBloodColor( BLOOD_COLOR_RED );
-	m_flFieldOfView			= -0.2;// indicates the width of this NPC's forward view cone ( as a dotproduct result )
+//	if (!m_bWearingMask)
+	switch(m_bWearingMask)
+	{
+		case 0:
+			m_flFieldOfView	= VIEW_FIELD_ULTRA_NARROW;
+			break;
+		case 1:
+			m_flFieldOfView	= VIEW_FIELD_ULTRA_NARROW;
+			break;
+		default:
+			m_flFieldOfView	= VIEW_FIELD_NARROW;
+	}
+//	else
+//		m_flFieldOfView	= VIEW_FIELD_ULTRA_NARROW;
+	// -0.2;// indicates the width of this NPC's forward view cone ( as a dotproduct result )
 	m_NPCState				= NPC_STATE_NONE;
 	m_flNextGrenadeCheck	= gpGlobals->curtime + 1;
 	m_flNextPainSoundTime	= 0;

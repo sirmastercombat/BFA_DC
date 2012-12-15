@@ -58,6 +58,8 @@ public:
 	
 	void		CalcIronsights( Vector &pos, QAngle &ang );
 	void		CalcLeg( Vector &pos, QAngle &ang );
+	void		CalcWalk( Vector &pos, QAngle &ang );
+	void		CalcLimitAim( Vector &pos, QAngle &ang );
 	// Initializes the viewmodel for use							
 	void					SetOwner( CBaseEntity *pEntity );
 	void					SetIndex( int nIndex );

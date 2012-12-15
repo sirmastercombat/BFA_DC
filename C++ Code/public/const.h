@@ -304,6 +304,7 @@ enum RenderMode_t
 	kRenderTransAlphaAdd,	// src + dest*(1-a)
 	kRenderWorldGlow,		// Same as kRenderGlow but not fixed size in screen space
 	kRenderNone,			// Don't render.
+	kRenderMirrorOnly,			// Don't render.
 };
 
 enum RenderFx_t

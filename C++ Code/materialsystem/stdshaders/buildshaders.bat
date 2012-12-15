@@ -205,4 +205,5 @@ REM ****************
 
 %TTEXE% -diff %tt_start%
 echo.
+pause
 

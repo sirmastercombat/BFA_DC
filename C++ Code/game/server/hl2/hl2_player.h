@@ -14,7 +14,7 @@
 #include "hl2_playerlocaldata.h"
 #include "simtimer.h"
 #include "soundenvelope.h"
-
+#include "bfa/singleplayer_animstate.h"
 // In HL2MP we need to inherit from  BaseMultiplayerPlayer!
 #if defined ( HL2MP )
 #include "basemultiplayerplayer.h"
@@ -261,6 +261,10 @@ public:
 	CNetworkVar( float, m_flNextKickAttack );
 	CNetworkVar( bool, m_bIsKicking );
 
+	void SetAnimation( PLAYER_ANIM playerAnim );
+
+	void				ArmsConnect( void );
+	void				ArmsDisconnect( void );
 	// Underwater breather device
 	virtual void		SetPlayerUnderwater( bool state );
 	virtual bool		CanBreatheUnderwater() const { return m_HL2Local.m_flSuitPower > 0.0f; }
@@ -394,6 +398,9 @@ private:
 	float				m_flTimeNextLadderHint;	// Next time we're eligible to display a HUD hint about a ladder.
 	
 	friend class CHL2GameMovement;
+
+	CSinglePlayerAnimState *m_pPlayerAnimState;
+	QAngle m_angEyeAngles;
 };
 
 

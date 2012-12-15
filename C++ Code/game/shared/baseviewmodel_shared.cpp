@@ -405,6 +405,8 @@ void CBaseViewModel::CalcViewModelView( CBasePlayer *owner, const Vector& eyePos
 
 	CalcIronsights( vmorigin, vmangles );
 	CalcLeg( vmorigin, vmangles );
+//	CalcLimitAim( vmorigin, vmangles );
+
 	SetLocalOrigin( vmorigin );
 	SetLocalAngles( vmangles );
 
@@ -496,6 +498,33 @@ void CBaseViewModel::CalcLeg( Vector &pos, QAngle &ang )
 		ang = QAngle( clamp(m_hOwner->EyeAngles().x, 0, 80), m_hOwner->EyeAngles().y, m_hOwner->EyeAngles().z);
 	}
 }
+
+void CBaseViewModel::CalcWalk( Vector &pos, QAngle &ang )
+{
+	CBaseCombatWeapon *pWeapon = GetOwningWeapon();
+ 
+	if ( pWeapon )
+		return;
+
+	if ( !m_hOwner->IsPlayer() )
+	{
+		ang = QAngle( 0, m_hOwner->EyeAngles().y, 0);
+	}
+}
+
+void CBaseViewModel::CalcLimitAim( Vector &pos, QAngle &ang )
+{
+	CBaseCombatWeapon *pWeapon = GetOwningWeapon();
+ 
+	if ( !pWeapon )
+		return;
+
+	if ( m_hOwner->IsPlayer() )
+	{
+		ang = QAngle( clamp(m_hOwner->EyeAngles().x, -90, 70), m_hOwner->EyeAngles().y, m_hOwner->EyeAngles().z);
+	}
+}
+
 void CBaseViewModel::CalcIronsights( Vector &pos, QAngle &ang )
 {
 	CBaseCombatWeapon *pWeapon = GetOwningWeapon();

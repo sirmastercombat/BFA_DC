@@ -161,6 +161,13 @@ ConVar	sk_player_leg( "sk_player_leg","1" );
 
 ConVar  player_debug_print_damage( "player_debug_print_damage", "0", FCVAR_CHEAT, "When true, print amount and type of all damage received by player to console." );
 
+Vector g_vecFiringAng;
+CON_COMMAND(updateFiringAngle, "Retrieves new Aiming(firing) angles...")
+{
+	g_vecFiringAng.x = atof(args.Arg(1));
+	g_vecFiringAng.y = atof(args.Arg(2));
+	g_vecFiringAng.z = atof(args.Arg(3));	
+};
 
 void CC_GiveCurrentAmmo( void )
 {
@@ -4905,6 +4912,8 @@ void CBasePlayer::Spawn( void )
 
 	CreateViewModel();
 	CreateViewModel( 1 );
+	CreateViewModel( 2 );
+	CreateViewModel( 3 );
 
 	SetCollisionGroup( COLLISION_GROUP_PLAYER );
 
@@ -6789,13 +6798,18 @@ bool CBasePlayer::ShouldAutoaim( void )
 //-----------------------------------------------------------------------------
 Vector CBasePlayer::GetAutoaimVector( float flScale )
 {
-	autoaim_params_t params;
+	
+	//autoaim_params_t params;
 
-	params.m_fScale = flScale;
-	params.m_fMaxDist = autoaim_max_dist.GetFloat();
+	//params.m_fScale = flScale;
+	//params.m_fMaxDist = autoaim_max_dist.GetFloat();
 
-	GetAutoaimVector( params );
-	return params.m_vecAutoAimDir;
+	//GetAutoaimVector( params );
+	
+	//VectorCopy(, params.m_vecAutoAimDir);
+	//return params.m_vecAutoAimDir;
+	return g_vecFiringAng;
+
 }
 
 //-----------------------------------------------------------------------------

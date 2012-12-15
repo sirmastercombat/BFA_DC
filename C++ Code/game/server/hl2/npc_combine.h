@@ -71,6 +71,10 @@ public:
 	void InputHitByBugbait( inputdata_t &inputdata );
 	void InputThrowGrenadeAtTarget( inputdata_t &inputdata );
 
+	
+	void InputOnGasMask( inputdata_t &inputdata );
+	void InputOffGasMask( inputdata_t &inputdata );
+
 	bool			UpdateEnemyMemory( CBaseEntity *pEnemy, const Vector &position, CBaseEntity *pInformer = NULL );
 
 	void			Spawn( void );
@@ -260,6 +264,7 @@ private:
 	Vector			m_vecTossVelocity;
 	EHANDLE			m_hForcedGrenadeTarget;
 	bool			m_bShouldPatrol;
+	int			m_bWearingMask;
 	bool			m_bFirstEncounter;// only put on the handsign show in the squad's first encounter.
 
 	// Time Variables
