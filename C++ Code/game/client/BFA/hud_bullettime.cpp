@@ -144,14 +144,15 @@ void CHudBulletTime::Paint( void )
 	C_BaseHLPlayer *pPlayer = dynamic_cast<C_BaseHLPlayer *>(C_BasePlayer::GetLocalPlayer());
 	if ( pPlayer == NULL )
 		return;
-
 	if ( pPlayer->m_HL2Local.m_fBulletTimeOn && m_bZoomOn == false )
 	{
+		engine->ClientCmd_Unrestricted("sv_cheats 1; host_timescale 0.1");
 		m_bZoomOn = true;
 		m_flZoomStartTime = gpGlobals->curtime;
 	}
 	else if ( pPlayer->m_HL2Local.m_fBulletTimeOn == false && m_bZoomOn )
 	{
+		engine->ClientCmd_Unrestricted("sv_cheats 0; host_timescale 1.0");
 		m_bZoomOn = false;
 		m_flZoomStartTime = gpGlobals->curtime;
 	}

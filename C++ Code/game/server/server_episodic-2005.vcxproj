@@ -446,6 +446,8 @@ if exist "$(TargetDir)"server.pdb copy "$(TargetDir)"server.pdb "c:\program file
     <ClCompile Include="globalstate.cpp" />
     <ClCompile Include="grenadethrown.cpp" />
     <ClCompile Include="guntarget.cpp" />
+    <ClCompile Include="Human_Error\vehicle_manhack.cpp" />
+    <ClCompile Include="Human_Error\weapon_manhack.cpp" />
     <ClCompile Include="h_ai.cpp" />
     <ClCompile Include="h_cycler.cpp" />
     <ClCompile Include="h_export.cpp">
@@ -1085,6 +1087,8 @@ if exist "$(TargetDir)"server.pdb copy "$(TargetDir)"server.pdb "c:\program file
     <ClInclude Include="globalstate.h" />
     <ClInclude Include="globalstate_private.h" />
     <ClInclude Include="grenadethrown.h" />
+    <ClInclude Include="Human_Error\vehicle_manhack.h" />
+    <ClInclude Include="Human_Error\weapon_manhack.h" />
     <ClInclude Include="h_cycler.h" />
     <ClInclude Include="hierarchy.h" />
     <ClInclude Include="..\shared\hintmessage.h" />

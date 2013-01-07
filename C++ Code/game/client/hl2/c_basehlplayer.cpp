@@ -50,9 +50,9 @@ void CC_DropPrimary( void )
 
 	pPlayer->Weapon_DropPrimary();
 }
-/*
-static ConCommand dropprimary("dropprimary", CC_DropPrimary, "dropprimary: Drops the primary weapon of the player.");
 
+static ConCommand dropprimary("dropprimary", CC_DropPrimary, "dropprimary: Drops the primary weapon of the player.");
+/*
 void CC_StartBT( void )
 {
 	engine->ClientCmd_Unrestricted("host_timescale 0.2\n");

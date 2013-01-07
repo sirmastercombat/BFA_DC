@@ -68,6 +68,10 @@
 // Projective textures
 #include "c_env_projected_texture.h"
 
+//TERO: added by me
+#include "bfa/c_manhack_screen.h"
+#include "c_vguiscreen.h" 
+
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
@@ -1821,6 +1825,64 @@ const char *COM_GetModDirectory();
 //			whatToDraw - 
 //-----------------------------------------------------------------------------
 // This renders the entire 3D view.
+//TERO: remember to edit this shit
+void CViewRender::DrawManhackScreen( const CViewSetup &viewSet )
+{
+	C_BasePlayer *localPlayer = C_BasePlayer::GetLocalPlayer();
+
+	if(!localPlayer)
+		return;
+
+	C_BaseCombatWeapon *pWeapon = localPlayer->GetActiveWeapon();
+
+	if( !pWeapon )
+		return;
+
+	//if (!pWeapon->IsWeaponManhack()) 
+	//If you want to add IsWeaponManhack( void ) { return false; } to 
+	//C_BaseCombatWeapon you wont have to use FClassnameIs
+	if (!FClassnameIs( pWeapon, "weapon_manhack"))
+		return;
+
+	if( !pWeapon->GetViewModel() )
+		return;
+
+	CManhackScreen *pScreen = GetManhackScreen();
+
+	if (!pScreen)
+	{
+		return;
+	}
+
+	//Get our camera render target.
+	ITexture *pRenderTarget = GetManhackScreenTexture();
+
+	if( pRenderTarget == NULL )
+		return;
+
+	if( !pRenderTarget->IsRenderTarget() )
+		return;
+
+	CViewSetup ManhackView = viewSet;
+
+	ManhackView.width			= pRenderTarget->GetActualWidth(); 
+	ManhackView.height			=  pRenderTarget->GetActualHeight();
+	ManhackView.x				= 0;
+	ManhackView.y				= 0;
+
+	render->Push2DView( ManhackView, 0, pRenderTarget, GetFrustum() );
+
+	pScreen->SetVisible( true );
+	pScreen->SetSize(ManhackView.width , ManhackView.height );
+	vgui::ipanel()->SetPos( pScreen->GetVPanel(), 0, 0);
+	vgui::ipanel()->SetSize( pScreen->GetVPanel(), ManhackView.width, ManhackView.height);
+	vgui::ipanel()->PaintTraverse( pScreen->GetVPanel(), true );
+	
+	render->PopView( m_Frustum );
+
+	pScreen->SetVisible( false );
+}
+
 void CViewRender::RenderView( const CViewSetup &view, int nClearFlags, int whatToDraw )
 {
 	m_UnderWaterOverlayMaterial.Shutdown();					// underwater view will set
@@ -1871,7 +1933,8 @@ void CViewRender::RenderView( const CViewSetup &view, int nClearFlags, int whatT
 			( g_pMaterialSystemHardwareConfig->GetDXSupportLevel() >= 70 ) &&
 			( ( whatToDraw & RENDERVIEW_SUPPRESSMONITORRENDERING ) == 0 ) )
 		{
-			DrawMonitors( view );	
+			DrawMonitors( view );
+			DrawManhackScreen( view );
 		}
 	#endif
 

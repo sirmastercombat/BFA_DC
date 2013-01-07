@@ -1,11 +1,11 @@
-﻿Build started 12/15/2012 11:35:10 AM.
+﻿Build started 1/6/2013 5:07:35 PM.
      1>Project "C:\SourceSDK.Source_Code\BFA_NEW\BFA_DC\C++ Code\game\client\client_episodic-2005.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating ".\Release_episodic\Client Episodic.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\hl2 /I.\hl2\elements /I..\..\game\shared\hl2 /I..\..\game\shared\episodic /I..\..\public /I.\ /I..\..\common /I..\..\public /I..\..\public\tier0 /I..\..\public\tier1 /I..\..\vgui2\include /I..\..\vgui2\controls /I..\..\game\shared /I.\game_controls /Zi /nologo /W4 /WX- /O2 /Ob2 /Oi /Ot /Oy- /D WIN32 /D _WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D NO_STRING_T /D CLIENT_DLL /D VECTOR /D VERSION_SAFE_STEAM_API_INTERFACES /D PROTECTED_THINGS_ENABLE /D fopen=dont_use_fopen /D strncpy=use_Q_strncpy_instead /D _snprintf=use_Q_snprintf_instead /D ENABLE_HTMLWINDOW /D HL2_CLIENT_DLL /D HL2_EPISODIC /D SP_SDK /D _WINDLL /D _MBCS /GF /Gm- /MT /GS- /Gy /fp:fast /Zc:wchar_t /Zc:forScope /GR /Yc"cbase.h" /Fp".\Release_episodic\client.pch" /Fo".\Release_episodic\\" /Fd".\Release_episodic\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\hl2 /I.\hl2\elements /I..\..\game\shared\hl2 /I..\..\game\shared\episodic /I..\..\public /I.\ /I..\..\common /I..\..\public\tier0 /I..\..\public\tier1 /I..\..\vgui2\include /I..\..\vgui2\controls /I..\..\game\shared /I.\game_controls /I"C:\Program Files (x86)\Khrona LLC\Awesomium SDK\1.6.6\\include" /Zi /nologo /W4 /WX- /O2 /Ob2 /Oi /Ot /Oy- /D WIN32 /D _WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D NO_STRING_T /D CLIENT_DLL /D VECTOR /D VERSION_SAFE_STEAM_API_INTERFACES /D PROTECTED_THINGS_ENABLE /D fopen=dont_use_fopen /D strncpy=use_Q_strncpy_instead /D _snprintf=use_Q_snprintf_instead /D ENABLE_HTMLWINDOW /D HL2_CLIENT_DLL /D HL2_EPISODIC /D SP_SDK /D _WINDLL /D _MBCS /GF /Gm- /MT /GS- /Gy /fp:fast /Zc:wchar_t /Zc:forScope /GR /Yc"cbase.h" /Fp".\Release_episodic\client.pch" /Fo".\Release_episodic\\" /Fd".\Release_episodic\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
          stdafx.cpp
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\hl2 /I.\hl2\elements /I..\..\game\shared\hl2 /I..\..\game\shared\episodic /I..\..\public /I.\ /I..\..\common /I..\..\public /I..\..\public\tier0 /I..\..\public\tier1 /I..\..\vgui2\include /I..\..\vgui2\controls /I..\..\game\shared /I.\game_controls /Zi /nologo /W4 /WX- /O2 /Ob2 /Oi /Ot /Oy- /D WIN32 /D _WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D NO_STRING_T /D CLIENT_DLL /D VECTOR /D VERSION_SAFE_STEAM_API_INTERFACES /D PROTECTED_THINGS_ENABLE /D fopen=dont_use_fopen /D strncpy=use_Q_strncpy_instead /D _snprintf=use_Q_snprintf_instead /D ENABLE_HTMLWINDOW /D HL2_CLIENT_DLL /D HL2_EPISODIC /D SP_SDK /D _WINDLL /D _MBCS /GF /Gm- /MT /GS- /Gy /fp:fast /Zc:wchar_t /Zc:forScope /GR /Yu"cbase.h" /Fp".\Release_episodic\client.pch" /Fo".\Release_episodic\\" /Fd".\Release_episodic\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\public\SoundParametersInternal.cpp ..\..\public\bone_accessor.cpp ..\..\public\tools\bonelist.cpp ..\shared\EntityParticleTrail_Shared.cpp ..\shared\GameStats.cpp ..\shared\SoundEmitterSystem.cpp ..\shared\Sprite.cpp ..\shared\SpriteTrail.cpp ..\shared\achievement_saverestore.cpp ..\shared\achievementmgr.cpp ..\shared\achievements_hlx.cpp ..\shared\activitylist.cpp ..\shared\ammodef.cpp ..\shared\animation.cpp ..\shared\base_playeranimstate.cpp ..\shared\baseachievement.cpp ..\shared\basecombatcharacter_shared.cpp ..\shared\basecombatweapon_shared.cpp ..\shared\baseentity_shared.cpp ..\shared\basegrenade_shared.cpp ..\shared\baseparticleentity.cpp ..\shared\baseplayer_shared.cpp ..\shared\baseviewmodel_shared.cpp ..\shared\beam_shared.cpp ..\shared\bfa\singleplayer_animstate.cpp ..\shared\collisionproperty.cpp ..\shared\death_pose.cpp ..\shared\debugoverlay_shared.cpp ..\shared\decals.cpp ..\shared\effect_dispatch_data.cpp ..\shared\ehandle.cpp ..\shared\entitylist_base.cpp ..\shared\env_detail_controller.cpp ..\shared\env_wind_shared.cpp ..\shared\eventlist.cpp ..\shared\func_ladder.cpp ..\shared\gamemovement.cpp ..\shared\gamerules.cpp ..\shared\gamerules_register.cpp ..\shared\gamestringpool.cpp ..\shared\gamevars_shared.cpp ..\shared\hintmessage.cpp ..\shared\hintsystem.cpp ..\shared\hl2\basehlcombatweapon_shared.cpp ..\shared\hl2\env_headcrabcanister_shared.cpp ..\shared\hl2\hl2_gamerules.cpp ..\shared\hl2\hl2_usermessages.cpp ..\shared\hl2\hl_gamemovement.cpp ..\shared\hl2\survival_gamerules.cpp ..\shared\igamesystem.cpp ..\shared\mapentities_shared.cpp ..\shared\movevars_shared.cpp ..\shared\mp_shareddefs.cpp ..\shared\multiplay_gamerules.cpp ..\shared\obstacle_pushaway.cpp ..\shared\particle_parse.cpp ..\shared\particle_property.cpp ..\shared\particlesystemquery.cpp ..\shared\physics_main_shared.cpp ..\shared\physics_saverestore.cpp ..\shared\physics_shared.cpp ..\shared\point_bonusmaps_accessor.cpp ..\shared\point_posecontroller.cpp ..\shared\precache_register.cpp ..\shared\predictableid.cpp ..\shared\predictioncopy.cpp ..\shared\props_shared.cpp ..\shared\ragdoll_shared.cpp ..\shared\rope_helpers.cpp ..\shared\saverestore.cpp ..\shared\sceneentity_shared.cpp ..\shared\script_intro_shared.cpp ..\shared\sequence_Transitioner.cpp ..\shared\simtimer.cpp ..\shared\singleplay_gamerules.cpp ..\shared\soundenvelope.cpp ..\shared\studio_shared.cpp ..\shared\takedamageinfo.cpp ..\shared\teamplay_gamerules.cpp ..\shared\teamplayroundbased_gamerules.cpp ..\shared\test_ehandle.cpp ..\shared\usercmd.cpp ..\shared\usermessages.cpp ..\shared\util_shared.cpp ..\shared\vehicle_viewblend_shared.cpp ..\shared\voice_banmgr.cpp ..\shared\voice_status.cpp ..\shared\weapon_parse.cpp ..\shared\weapon_parse_default.cpp AnimateSpecificTextureProxy.cpp BFA\ge_screeneffects.cpp BFA\hud_bullettime.cpp C_MaterialModifyControl.cpp C_WaterLODControl.cpp EffectsClient.cpp IsNPCProxy.cpp ProxyHealth.cpp ScreenSpaceEffects.cpp ViewConeImage.cpp WaterLODMaterialProxy.cpp WorldDimsProxy.cpp achievement_notification_panel.cpp alphamaterialproxy.cpp animatedentitytextureproxy.cpp animatedoffsettextureproxy.cpp animatedtextureproxy.cpp baseanimatedtextureproxy.cpp baseclientrendertargets.cpp basepresence.cpp beamdraw.cpp bone_merge_cache.cpp c_ai_basehumanoid.cpp c_ai_basenpc.cpp c_baseanimating.cpp c_baseanimatingoverlay.cpp c_basecombatcharacter.cpp c_basecombatweapon.cpp c_basedoor.cpp c_baseentity.cpp c_baseflex.cpp c_baseplayer.cpp c_basetempentity.cpp c_baseviewmodel.cpp c_breakableprop.cpp c_colorcorrection.cpp c_colorcorrectionvolume.cpp c_dynamiclight.cpp c_effects.cpp c_entitydissolve.cpp c_entityparticletrail.cpp c_env_fog_controller.cpp c_env_particlescript.cpp c_env_projectedtexture.cpp c_env_screenoverlay.cpp c_env_tonemap_controller.cpp c_fire_smoke.cpp c_fish.cpp c_func_areaportalwindow.cpp c_func_breakablesurf.cpp c_func_conveyor.cpp c_func_dust.cpp c_func_lod.cpp c_func_occluder.cpp c_func_reflective_glass.cpp c_func_rotating.cpp c_func_smokevolume.cpp c_func_tracktrain.cpp c_gib.cpp c_hairball.cpp c_impact_effects.cpp c_info_overlay_accessor.cpp c_lightglow.cpp c_movie_explosion.cpp c_particle_fire.cpp c_particle_smokegrenade.cpp c_particle_system.cpp c_physbox.cpp c_physicsprop.cpp c_physmagnet.cpp c_pixel_visibility.cpp c_plasma.cpp c_playerresource.cpp c_point_camera.cpp c_point_commentary_node.cpp c_prop_vehicle.cpp c_props.cpp c_ragdoll_manager.cpp c_recipientfilter.cpp c_rope.cpp c_rumble.cpp c_sceneentity.cpp c_shadowcontrol.cpp c_slideshow_display.cpp c_smoke_trail.cpp c_smokestack.cpp c_soundscape.cpp c_spotlight_end.cpp c_sprite.cpp c_sprite_perfmonitor.cpp c_steamjet.cpp c_stickybolt.cpp c_sun.cpp c_te.cpp c_te_armorricochet.cpp c_te_basebeam.cpp c_te_beamentpoint.cpp c_te_beaments.cpp c_te_beamfollow.cpp c_te_beamlaser.cpp c_te_beampoints.cpp c_te_beamring.cpp c_te_beamringpoint.cpp c_te_beamspline.cpp c_te_bloodsprite.cpp c_te_bloodstream.cpp c_te_breakmodel.cpp c_te_bspdecal.cpp c_te_bubbles.cpp c_te_bubbletrail.cpp c_te_clientprojectile.cpp c_te_decal.cpp c_te_dynamiclight.cpp c_te_effect_dispatch.cpp c_te_energysplash.cpp c_te_explosion.cpp c_te_fizz.cpp c_te_footprint.cpp c_te_glassshatter.cpp c_te_glowsprite.cpp c_te_impact.cpp c_te_killplayerattachments.cpp c_te_largefunnel.cpp c_te_legacytempents.cpp c_te_muzzleflash.cpp c_te_particlesystem.cpp c_te_physicsprop.cpp c_te_playerdecal.cpp c_te_projecteddecal.cpp c_te_showline.cpp c_te_smoke.cpp c_te_sparks.cpp c_te_sprite.cpp c_te_spritespray.cpp c_te_worlddecal.cpp c_team.cpp c_team_objectiveresource.cpp c_tesla.cpp c_test_proxytoggle.cpp c_testtraceline.cpp c_tracer.cpp c_user_message_register.cpp c_vehicle_choreo_generic.cpp c_vehicle_jeep.cpp c_vguiscreen.cpp c_world.cpp camomaterialproxy.cpp cdll_bounded_cvars.cpp cdll_client_int.cpp cdll_util.cpp cl_mat_stub.cpp classmap.cpp client_factorylist.cpp client_thinklist.cpp clienteffectprecachesystem.cpp cliententitylist.cpp clientleafsystem.cpp clientmode_shared.cpp clientshadowmgr.cpp clientsideeffects.cpp clientsideeffects_test.cpp colorcorrectionmgr.cpp commentary_modelviewer.cpp death.cpp detailobjectsystem.cpp dummyproxy.cpp entity_client_tools.cpp entityoriginmaterialproxy.cpp episodic\c_npc_advisor.cpp episodic\c_npc_puppet.cpp episodic\c_prop_scalable.cpp episodic\c_vehicle_jeep_episodic.cpp episodic\c_vort_charge_token.cpp episodic\c_weapon_hopwire.cpp episodic\episodic_screenspaceeffects.cpp episodic\flesh_internal_material_proxy.cpp flashlighteffect.cpp functionproxy.cpp fx.cpp fx_blood.cpp fx_cube.cpp fx_discreetline.cpp fx_envelope.cpp fx_explosion.cpp fx_fleck.cpp fx_impact.cpp fx_interpvalue.cpp fx_line.cpp fx_quad.cpp fx_shelleject.cpp fx_sparks.cpp fx_staticline.cpp fx_tracer.cpp fx_trail.cpp fx_water.cpp game_controls\ClientScoreBoardDialog.cpp game_controls\IconPanel.cpp game_controls\MapOverview.cpp game_controls\NavProgress.cpp game_controls\SpectatorGUI.cpp game_controls\basemodel_panel.cpp game_controls\basemodelpanel.cpp game_controls\baseviewport.cpp game_controls\commandmenu.cpp game_controls\intromenu.cpp game_controls\teammenu.cpp game_controls\vguitextwindow.cpp gametrace_client.cpp geiger.cpp glow_overlay.cpp history_resource.cpp hl2\C_Func_Monitor.cpp hl2\c_antlion_dust.cpp hl2\c_ar2_explosion.cpp hl2\c_barnacle.cpp hl2\c_barney.cpp hl2\c_basehelicopter.cpp hl2\c_basehlcombatweapon.cpp hl2\c_basehlplayer.cpp hl2\c_citadel_effects.cpp hl2\c_corpse.cpp hl2\c_env_alyxtemp.cpp hl2\c_env_headcrabcanister.cpp hl2\c_env_starfield.cpp hl2\c_func_tankmortar.cpp hl2\c_hl2_playerlocaldata.cpp hl2\c_info_teleporter_countdown.cpp hl2\c_npc_antlionguard.cpp hl2\c_npc_combinegunship.cpp hl2\c_npc_manhack.cpp hl2\c_npc_rollermine.cpp hl2\c_plasma_beam_node.cpp hl2\c_prop_combine_ball.cpp hl2\c_rotorwash.cpp hl2\c_script_intro.cpp hl2\c_strider.cpp hl2\c_te_concussiveexplosion.cpp hl2\c_te_flare.cpp hl2\c_thumper_dust.cpp hl2\c_vehicle_airboat.cpp hl2\c_vehicle_cannon.cpp hl2\c_vehicle_crane.cpp hl2\c_vehicle_prisoner_pod.cpp hl2\c_waterbullet.cpp hl2\c_weapon__stubs_hl2.cpp hl2\c_weapon_crossbow.cpp hl2\c_weapon_physcannon.cpp hl2\c_weapon_stunstick.cpp hl2\clientmode_hlnormal.cpp hl2\fx_antlion.cpp hl2\fx_bugbait.cpp hl2\fx_hl2_impacts.cpp hl2\fx_hl2_tracers.cpp hl2\hl2_clientmode.cpp hl2\hl_in_main.cpp hl2\hl_prediction.cpp hl2\hud_ammo.cpp hl2\hud_autoaim.cpp hl2\hud_battery.cpp hl2\hud_blood.cpp hl2\hud_credits.cpp hl2\hud_damageindicator.cpp hl2\hud_filmdemo.cpp hl2\hud_flashlight.cpp hl2\hud_hdrdemo.cpp hl2\hud_health.cpp hl2\hud_locator.cpp hl2\hud_poisondamageindicator.cpp hl2\hud_quickinfo.cpp hl2\hud_radar.cpp hl2\hud_suitpower.cpp hl2\hud_weaponselection.cpp hl2\hud_zoom.cpp hl2\shieldproxy.cpp hl2\vgui_rootpanel_hl2.cpp hltvcamera.cpp hud.cpp hud_animationinfo.cpp hud_basechat.cpp hud_basetimer.cpp hud_bitmapnumericdisplay.cpp hud_chat.cpp hud_closecaption.cpp hud_crosshair.cpp hud_element_helper.cpp hud_hintdisplay.cpp hud_msg.cpp hud_numericdisplay.cpp hud_pdump.cpp hud_posture.cpp hud_redraw.cpp hud_squadstatus.cpp hud_vehicle.cpp hud_weapon.cpp in_camera.cpp in_joystick.cpp in_main.cpp initializer.cpp interpolatedvar.cpp lampbeamproxy.cpp lamphaloproxy.cpp mathproxy.cpp matrixproxy.cpp menu.cpp message.cpp movehelper_client.cpp mp3player.cpp panelmetaclassmgr.cpp particle_collision.cpp particle_litsmokeemitter.cpp particle_proxies.cpp particle_simple3d.cpp particlemgr.cpp particles_attractor.cpp particles_ez.cpp particles_localspace.cpp particles_new.cpp particles_simple.cpp particlesphererenderer.cpp perfvisualbenchmark.cpp physics.cpp physics_main_client.cpp physpropclientside.cpp playerandobjectenumerator.cpp prediction.cpp proxyentity.cpp proxyplayer.cpp proxypupil.cpp ragdoll.cpp recvproxy.cpp simple_keys.cpp smoke_fog_overlay.cpp splinepatch.cpp spritemodel.cpp text_message.cpp texturescrollmaterialproxy.cpp timematerialproxy.cpp toggletextureproxy.cpp toolframework_client.cpp train.cpp vgui_avatarimage.cpp vgui_basepanel.cpp vgui_bitmapbutton.cpp vgui_bitmapimage.cpp vgui_bitmappanel.cpp vgui_centerstringpanel.cpp vgui_consolepanel.cpp vgui_debugoverlaypanel.cpp vgui_fpspanel.cpp vgui_game_viewport.cpp vgui_grid.cpp vgui_int.cpp vgui_loadingdiscpanel.cpp vgui_messagechars.cpp vgui_netgraphpanel.cpp vgui_slideshow_display_screen.cpp view.cpp view_beams.cpp view_effects.cpp view_scene.cpp viewangleanim.cpp viewdebug.cpp viewpostprocess.cpp viewrender.cpp warp_overlay.cpp weapon_selection.cpp weapons_resource.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\hl2 /I.\hl2\elements /I..\..\game\shared\hl2 /I..\..\game\shared\episodic /I..\..\public /I.\ /I..\..\common /I..\..\public\tier0 /I..\..\public\tier1 /I..\..\vgui2\include /I..\..\vgui2\controls /I..\..\game\shared /I.\game_controls /I"C:\Program Files (x86)\Khrona LLC\Awesomium SDK\1.6.6\\include" /Zi /nologo /W4 /WX- /O2 /Ob2 /Oi /Ot /Oy- /D WIN32 /D _WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D NO_STRING_T /D CLIENT_DLL /D VECTOR /D VERSION_SAFE_STEAM_API_INTERFACES /D PROTECTED_THINGS_ENABLE /D fopen=dont_use_fopen /D strncpy=use_Q_strncpy_instead /D _snprintf=use_Q_snprintf_instead /D ENABLE_HTMLWINDOW /D HL2_CLIENT_DLL /D HL2_EPISODIC /D SP_SDK /D _WINDLL /D _MBCS /GF /Gm- /MT /GS- /Gy /fp:fast /Zc:wchar_t /Zc:forScope /GR /Yu"cbase.h" /Fp".\Release_episodic\client.pch" /Fo".\Release_episodic\\" /Fd".\Release_episodic\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\public\SoundParametersInternal.cpp ..\..\public\bone_accessor.cpp ..\..\public\tools\bonelist.cpp ..\shared\EntityParticleTrail_Shared.cpp ..\shared\GameStats.cpp ..\shared\SoundEmitterSystem.cpp ..\shared\Sprite.cpp ..\shared\SpriteTrail.cpp ..\shared\achievement_saverestore.cpp ..\shared\achievementmgr.cpp ..\shared\achievements_hlx.cpp ..\shared\activitylist.cpp ..\shared\ammodef.cpp ..\shared\animation.cpp ..\shared\base_playeranimstate.cpp ..\shared\baseachievement.cpp ..\shared\basecombatcharacter_shared.cpp ..\shared\basecombatweapon_shared.cpp ..\shared\baseentity_shared.cpp ..\shared\basegrenade_shared.cpp ..\shared\baseparticleentity.cpp ..\shared\baseplayer_shared.cpp ..\shared\baseviewmodel_shared.cpp ..\shared\beam_shared.cpp ..\shared\bfa\singleplayer_animstate.cpp ..\shared\collisionproperty.cpp ..\shared\death_pose.cpp ..\shared\debugoverlay_shared.cpp ..\shared\decals.cpp ..\shared\effect_dispatch_data.cpp ..\shared\ehandle.cpp ..\shared\entitylist_base.cpp ..\shared\env_detail_controller.cpp ..\shared\env_wind_shared.cpp ..\shared\eventlist.cpp ..\shared\func_ladder.cpp ..\shared\gamemovement.cpp ..\shared\gamerules.cpp ..\shared\gamerules_register.cpp ..\shared\gamestringpool.cpp ..\shared\gamevars_shared.cpp ..\shared\hintmessage.cpp ..\shared\hintsystem.cpp ..\shared\hl2\basehlcombatweapon_shared.cpp ..\shared\hl2\env_headcrabcanister_shared.cpp ..\shared\hl2\hl2_gamerules.cpp ..\shared\hl2\hl2_usermessages.cpp ..\shared\hl2\hl_gamemovement.cpp ..\shared\hl2\survival_gamerules.cpp ..\shared\igamesystem.cpp ..\shared\mapentities_shared.cpp ..\shared\movevars_shared.cpp ..\shared\mp_shareddefs.cpp ..\shared\multiplay_gamerules.cpp ..\shared\obstacle_pushaway.cpp ..\shared\particle_parse.cpp ..\shared\particle_property.cpp ..\shared\particlesystemquery.cpp ..\shared\physics_main_shared.cpp ..\shared\physics_saverestore.cpp ..\shared\physics_shared.cpp ..\shared\point_bonusmaps_accessor.cpp ..\shared\point_posecontroller.cpp ..\shared\precache_register.cpp ..\shared\predictableid.cpp ..\shared\predictioncopy.cpp ..\shared\props_shared.cpp ..\shared\ragdoll_shared.cpp ..\shared\rope_helpers.cpp ..\shared\saverestore.cpp ..\shared\sceneentity_shared.cpp ..\shared\script_intro_shared.cpp ..\shared\sequence_Transitioner.cpp ..\shared\simtimer.cpp ..\shared\singleplay_gamerules.cpp ..\shared\soundenvelope.cpp ..\shared\studio_shared.cpp ..\shared\takedamageinfo.cpp ..\shared\teamplay_gamerules.cpp ..\shared\teamplayroundbased_gamerules.cpp ..\shared\test_ehandle.cpp ..\shared\usercmd.cpp ..\shared\usermessages.cpp ..\shared\util_shared.cpp ..\shared\vehicle_viewblend_shared.cpp ..\shared\voice_banmgr.cpp ..\shared\voice_status.cpp ..\shared\weapon_parse.cpp ..\shared\weapon_parse_default.cpp AnimateSpecificTextureProxy.cpp BFA\hud_bullettime.cpp C_MaterialModifyControl.cpp C_WaterLODControl.cpp EffectsClient.cpp Human_Error\c_manhack_screen.cpp Human_Error\c_vehicle_manhack.cpp Human_Error\c_weapon_manhack.cpp Human_Error\tne_RenderTargets.cpp IsNPCProxy.cpp ProxyHealth.cpp ScreenSpaceEffects.cpp ViewConeImage.cpp WaterLODMaterialProxy.cpp WorldDimsProxy.cpp achievement_notification_panel.cpp alphamaterialproxy.cpp animatedentitytextureproxy.cpp animatedoffsettextureproxy.cpp animatedtextureproxy.cpp baseanimatedtextureproxy.cpp baseclientrendertargets.cpp basepresence.cpp beamdraw.cpp bone_merge_cache.cpp c_ai_basehumanoid.cpp c_ai_basenpc.cpp c_baseanimating.cpp c_baseanimatingoverlay.cpp c_basecombatcharacter.cpp c_basecombatweapon.cpp c_basedoor.cpp c_baseentity.cpp c_baseflex.cpp c_baseplayer.cpp c_basetempentity.cpp c_baseviewmodel.cpp c_breakableprop.cpp c_colorcorrection.cpp c_colorcorrectionvolume.cpp c_dynamiclight.cpp c_effects.cpp c_entitydissolve.cpp c_entityparticletrail.cpp c_env_fog_controller.cpp c_env_particlescript.cpp c_env_projectedtexture.cpp c_env_screenoverlay.cpp c_env_tonemap_controller.cpp c_fire_smoke.cpp c_fish.cpp c_func_areaportalwindow.cpp c_func_breakablesurf.cpp c_func_conveyor.cpp c_func_dust.cpp c_func_lod.cpp c_func_occluder.cpp c_func_reflective_glass.cpp c_func_rotating.cpp c_func_smokevolume.cpp c_func_tracktrain.cpp c_gib.cpp c_hairball.cpp c_impact_effects.cpp c_info_overlay_accessor.cpp c_lightglow.cpp c_movie_explosion.cpp c_particle_fire.cpp c_particle_smokegrenade.cpp c_particle_system.cpp c_physbox.cpp c_physicsprop.cpp c_physmagnet.cpp c_pixel_visibility.cpp c_plasma.cpp c_playerresource.cpp c_point_camera.cpp c_point_commentary_node.cpp c_prop_vehicle.cpp c_props.cpp c_ragdoll_manager.cpp c_recipientfilter.cpp c_rope.cpp c_rumble.cpp c_sceneentity.cpp c_shadowcontrol.cpp c_slideshow_display.cpp c_smoke_trail.cpp c_smokestack.cpp c_soundscape.cpp c_spotlight_end.cpp c_sprite.cpp c_sprite_perfmonitor.cpp c_steamjet.cpp c_stickybolt.cpp c_sun.cpp c_te.cpp c_te_armorricochet.cpp c_te_basebeam.cpp c_te_beamentpoint.cpp c_te_beaments.cpp c_te_beamfollow.cpp c_te_beamlaser.cpp c_te_beampoints.cpp c_te_beamring.cpp c_te_beamringpoint.cpp c_te_beamspline.cpp c_te_bloodsprite.cpp c_te_bloodstream.cpp c_te_breakmodel.cpp c_te_bspdecal.cpp c_te_bubbles.cpp c_te_bubbletrail.cpp c_te_clientprojectile.cpp c_te_decal.cpp c_te_dynamiclight.cpp c_te_effect_dispatch.cpp c_te_energysplash.cpp c_te_explosion.cpp c_te_fizz.cpp c_te_footprint.cpp c_te_glassshatter.cpp c_te_glowsprite.cpp c_te_impact.cpp c_te_killplayerattachments.cpp c_te_largefunnel.cpp c_te_legacytempents.cpp c_te_muzzleflash.cpp c_te_particlesystem.cpp c_te_physicsprop.cpp c_te_playerdecal.cpp c_te_projecteddecal.cpp c_te_showline.cpp c_te_smoke.cpp c_te_sparks.cpp c_te_sprite.cpp c_te_spritespray.cpp c_te_worlddecal.cpp c_team.cpp c_team_objectiveresource.cpp c_tesla.cpp c_test_proxytoggle.cpp c_testtraceline.cpp c_tracer.cpp c_user_message_register.cpp c_vehicle_choreo_generic.cpp c_vehicle_jeep.cpp c_vguiscreen.cpp c_world.cpp camomaterialproxy.cpp cdll_bounded_cvars.cpp cdll_client_int.cpp cdll_util.cpp cl_mat_stub.cpp classmap.cpp client_factorylist.cpp client_thinklist.cpp clienteffectprecachesystem.cpp cliententitylist.cpp clientleafsystem.cpp clientmode_shared.cpp clientshadowmgr.cpp clientsideeffects.cpp clientsideeffects_test.cpp colorcorrectionmgr.cpp commentary_modelviewer.cpp death.cpp detailobjectsystem.cpp dummyproxy.cpp entity_client_tools.cpp entityoriginmaterialproxy.cpp episodic\c_npc_advisor.cpp episodic\c_npc_puppet.cpp episodic\c_prop_scalable.cpp episodic\c_vehicle_jeep_episodic.cpp episodic\c_vort_charge_token.cpp episodic\c_weapon_hopwire.cpp episodic\episodic_screenspaceeffects.cpp episodic\flesh_internal_material_proxy.cpp flashlighteffect.cpp functionproxy.cpp fx.cpp fx_blood.cpp fx_cube.cpp fx_discreetline.cpp fx_envelope.cpp fx_explosion.cpp fx_fleck.cpp fx_impact.cpp fx_interpvalue.cpp fx_line.cpp fx_quad.cpp fx_shelleject.cpp fx_sparks.cpp fx_staticline.cpp fx_tracer.cpp fx_trail.cpp fx_water.cpp game_controls\ClientScoreBoardDialog.cpp game_controls\IconPanel.cpp game_controls\MapOverview.cpp game_controls\NavProgress.cpp game_controls\SpectatorGUI.cpp game_controls\basemodel_panel.cpp game_controls\basemodelpanel.cpp game_controls\baseviewport.cpp game_controls\commandmenu.cpp game_controls\intromenu.cpp game_controls\teammenu.cpp game_controls\vguitextwindow.cpp gametrace_client.cpp geiger.cpp glow_overlay.cpp history_resource.cpp hl2\C_Func_Monitor.cpp hl2\c_antlion_dust.cpp hl2\c_ar2_explosion.cpp hl2\c_barnacle.cpp hl2\c_barney.cpp hl2\c_basehelicopter.cpp hl2\c_basehlcombatweapon.cpp hl2\c_basehlplayer.cpp hl2\c_citadel_effects.cpp hl2\c_corpse.cpp hl2\c_env_alyxtemp.cpp hl2\c_env_headcrabcanister.cpp hl2\c_env_starfield.cpp hl2\c_func_tankmortar.cpp hl2\c_hl2_playerlocaldata.cpp hl2\c_info_teleporter_countdown.cpp hl2\c_npc_antlionguard.cpp hl2\c_npc_combinegunship.cpp hl2\c_npc_manhack.cpp hl2\c_npc_rollermine.cpp hl2\c_plasma_beam_node.cpp hl2\c_prop_combine_ball.cpp hl2\c_rotorwash.cpp hl2\c_script_intro.cpp hl2\c_strider.cpp hl2\c_te_concussiveexplosion.cpp hl2\c_te_flare.cpp hl2\c_thumper_dust.cpp hl2\c_vehicle_airboat.cpp hl2\c_vehicle_cannon.cpp hl2\c_vehicle_crane.cpp hl2\c_vehicle_prisoner_pod.cpp hl2\c_waterbullet.cpp hl2\c_weapon__stubs_hl2.cpp hl2\c_weapon_crossbow.cpp hl2\c_weapon_physcannon.cpp hl2\c_weapon_stunstick.cpp hl2\clientmode_hlnormal.cpp hl2\fx_antlion.cpp hl2\fx_bugbait.cpp hl2\fx_hl2_impacts.cpp hl2\fx_hl2_tracers.cpp hl2\hl2_clientmode.cpp hl2\hl_in_main.cpp hl2\hl_prediction.cpp hl2\hud_ammo.cpp hl2\hud_autoaim.cpp hl2\hud_battery.cpp hl2\hud_blood.cpp hl2\hud_credits.cpp hl2\hud_damageindicator.cpp hl2\hud_filmdemo.cpp hl2\hud_flashlight.cpp hl2\hud_hdrdemo.cpp hl2\hud_health.cpp hl2\hud_locator.cpp hl2\hud_poisondamageindicator.cpp hl2\hud_quickinfo.cpp hl2\hud_radar.cpp hl2\hud_suitpower.cpp hl2\hud_weaponselection.cpp hl2\hud_zoom.cpp hl2\shieldproxy.cpp hl2\vgui_rootpanel_hl2.cpp hltvcamera.cpp hud.cpp hud_animationinfo.cpp hud_basechat.cpp hud_basetimer.cpp hud_bitmapnumericdisplay.cpp hud_chat.cpp hud_closecaption.cpp hud_crosshair.cpp hud_element_helper.cpp hud_hintdisplay.cpp hud_msg.cpp hud_numericdisplay.cpp hud_pdump.cpp hud_posture.cpp hud_redraw.cpp hud_squadstatus.cpp hud_vehicle.cpp hud_weapon.cpp in_camera.cpp in_joystick.cpp in_main.cpp initializer.cpp interpolatedvar.cpp lampbeamproxy.cpp lamphaloproxy.cpp mathproxy.cpp matrixproxy.cpp menu.cpp message.cpp movehelper_client.cpp mp3player.cpp panelmetaclassmgr.cpp particle_collision.cpp particle_litsmokeemitter.cpp particle_proxies.cpp particle_simple3d.cpp particlemgr.cpp particles_attractor.cpp particles_ez.cpp particles_localspace.cpp particles_new.cpp particles_simple.cpp particlesphererenderer.cpp perfvisualbenchmark.cpp physics.cpp physics_main_client.cpp physpropclientside.cpp playerandobjectenumerator.cpp prediction.cpp proxyentity.cpp proxyplayer.cpp proxypupil.cpp ragdoll.cpp recvproxy.cpp simple_keys.cpp smoke_fog_overlay.cpp splinepatch.cpp spritemodel.cpp text_message.cpp texturescrollmaterialproxy.cpp timematerialproxy.cpp toggletextureproxy.cpp toolframework_client.cpp train.cpp vgui_avatarimage.cpp vgui_basepanel.cpp vgui_bitmapbutton.cpp vgui_bitmapimage.cpp vgui_bitmappanel.cpp vgui_centerstringpanel.cpp vgui_consolepanel.cpp vgui_debugoverlaypanel.cpp vgui_fpspanel.cpp vgui_game_viewport.cpp vgui_grid.cpp vgui_int.cpp vgui_loadingdiscpanel.cpp vgui_messagechars.cpp vgui_netgraphpanel.cpp vgui_slideshow_display_screen.cpp view.cpp view_beams.cpp view_effects.cpp view_scene.cpp viewangleanim.cpp viewdebug.cpp viewpostprocess.cpp viewrender.cpp warp_overlay.cpp weapon_selection.cpp weapons_resource.cpp
          SoundParametersInternal.cpp
          bone_accessor.cpp
          bonelist.cpp
@@ -24,7 +24,7 @@
          baseachievement.cpp
          basecombatcharacter_shared.cpp
          basecombatweapon_shared.cpp
-     1>..\shared\basecombatweapon_shared.cpp(1447): warning C4189: 'pOwner' : local variable is initialized but not referenced
+     1>..\shared\basecombatweapon_shared.cpp(1450): warning C4189: 'pOwner' : local variable is initialized but not referenced
          baseentity_shared.cpp
          basegrenade_shared.cpp
          Generating Code...
@@ -105,18 +105,21 @@
          weapon_parse.cpp
          weapon_parse_default.cpp
          AnimateSpecificTextureProxy.cpp
-         ge_screeneffects.cpp
          hud_bullettime.cpp
          C_MaterialModifyControl.cpp
          C_WaterLODControl.cpp
          EffectsClient.cpp
+         c_manhack_screen.cpp
+         c_vehicle_manhack.cpp
+         c_weapon_manhack.cpp
+         tne_RenderTargets.cpp
          IsNPCProxy.cpp
          ProxyHealth.cpp
+         Generating Code...
+         Compiling...
          ScreenSpaceEffects.cpp
          ViewConeImage.cpp
          WaterLODMaterialProxy.cpp
-         Generating Code...
-         Compiling...
          WorldDimsProxy.cpp
          achievement_notification_panel.cpp
          alphamaterialproxy.cpp
@@ -134,11 +137,11 @@
          c_baseanimatingoverlay.cpp
          c_basecombatcharacter.cpp
          c_basecombatweapon.cpp
+         Generating Code...
+         Compiling...
          c_basedoor.cpp
          c_baseentity.cpp
          c_baseflex.cpp
-         Generating Code...
-         Compiling...
          c_baseplayer.cpp
          c_basetempentity.cpp
          c_baseviewmodel.cpp
@@ -156,11 +159,11 @@
          c_env_tonemap_controller.cpp
          c_fire_smoke.cpp
          c_fish.cpp
+         Generating Code...
+         Compiling...
          c_func_areaportalwindow.cpp
          c_func_breakablesurf.cpp
          c_func_conveyor.cpp
-         Generating Code...
-         Compiling...
          c_func_dust.cpp
          c_func_lod.cpp
          c_func_occluder.cpp
@@ -178,11 +181,11 @@
          c_particle_smokegrenade.cpp
          c_particle_system.cpp
          c_physbox.cpp
+         Generating Code...
+         Compiling...
          c_physicsprop.cpp
          c_physmagnet.cpp
          c_pixel_visibility.cpp
-         Generating Code...
-         Compiling...
          c_plasma.cpp
          c_playerresource.cpp
          c_point_camera.cpp
@@ -200,11 +203,11 @@
          c_smokestack.cpp
          c_soundscape.cpp
          c_spotlight_end.cpp
+         Generating Code...
+         Compiling...
          c_sprite.cpp
          c_sprite_perfmonitor.cpp
          c_steamjet.cpp
-         Generating Code...
-         Compiling...
          c_stickybolt.cpp
          c_sun.cpp
          c_te.cpp
@@ -222,11 +225,11 @@
          c_te_bloodstream.cpp
          c_te_breakmodel.cpp
          c_te_bspdecal.cpp
+         Generating Code...
+         Compiling...
          c_te_bubbles.cpp
          c_te_bubbletrail.cpp
          c_te_clientprojectile.cpp
-         Generating Code...
-         Compiling...
          c_te_decal.cpp
          c_te_dynamiclight.cpp
          c_te_effect_dispatch.cpp
@@ -244,11 +247,11 @@
          c_te_particlesystem.cpp
          c_te_physicsprop.cpp
          c_te_playerdecal.cpp
+         Generating Code...
+         Compiling...
          c_te_projecteddecal.cpp
          c_te_showline.cpp
          c_te_smoke.cpp
-         Generating Code...
-         Compiling...
          c_te_sparks.cpp
          c_te_sprite.cpp
          c_te_spritespray.cpp
@@ -266,11 +269,11 @@
          c_world.cpp
          camomaterialproxy.cpp
          cdll_bounded_cvars.cpp
+         Generating Code...
+         Compiling...
          cdll_client_int.cpp
          cdll_util.cpp
          cl_mat_stub.cpp
-         Generating Code...
-         Compiling...
          classmap.cpp
          client_factorylist.cpp
          client_thinklist.cpp
@@ -288,11 +291,11 @@
          dummyproxy.cpp
          entity_client_tools.cpp
          entityoriginmaterialproxy.cpp
+         Generating Code...
+         Compiling...
          c_npc_advisor.cpp
          c_npc_puppet.cpp
          c_prop_scalable.cpp
-         Generating Code...
-         Compiling...
          c_vehicle_jeep_episodic.cpp
          c_vort_charge_token.cpp
          c_weapon_hopwire.cpp
@@ -310,11 +313,11 @@
          fx_impact.cpp
          fx_interpvalue.cpp
          fx_line.cpp
+         Generating Code...
+         Compiling...
          fx_quad.cpp
          fx_shelleject.cpp
          fx_sparks.cpp
-         Generating Code...
-         Compiling...
          fx_staticline.cpp
          fx_tracer.cpp
          fx_trail.cpp
@@ -332,11 +335,11 @@
          teammenu.cpp
          vguitextwindow.cpp
          gametrace_client.cpp
+         Generating Code...
+         Compiling...
          geiger.cpp
          glow_overlay.cpp
          history_resource.cpp
-         Generating Code...
-         Compiling...
          C_Func_Monitor.cpp
          c_antlion_dust.cpp
          c_ar2_explosion.cpp
@@ -354,11 +357,11 @@
          c_hl2_playerlocaldata.cpp
          c_info_teleporter_countdown.cpp
          c_npc_antlionguard.cpp
+         Generating Code...
+         Compiling...
          c_npc_combinegunship.cpp
          c_npc_manhack.cpp
          c_npc_rollermine.cpp
-         Generating Code...
-         Compiling...
          c_plasma_beam_node.cpp
          c_prop_combine_ball.cpp
          c_rotorwash.cpp
@@ -376,11 +379,11 @@
          c_weapon_crossbow.cpp
          c_weapon_physcannon.cpp
          c_weapon_stunstick.cpp
+         Generating Code...
+         Compiling...
          clientmode_hlnormal.cpp
          fx_antlion.cpp
          fx_bugbait.cpp
-         Generating Code...
-         Compiling...
          fx_hl2_impacts.cpp
          fx_hl2_tracers.cpp
          hl2_clientmode.cpp
@@ -416,11 +419,11 @@
      1>hl2\hud_locator.cpp(9): warning C4627: '#include <vgui_controls/Panel.h>': skipped when looking for precompiled header use
                  Add directive to 'cbase.h' or rebuild precompiled header
          hud_poisondamageindicator.cpp
+         Generating Code...
+         Compiling...
          hud_quickinfo.cpp
          hud_radar.cpp
          hud_suitpower.cpp
-         Generating Code...
-         Compiling...
          hud_weaponselection.cpp
          hud_zoom.cpp
          shieldproxy.cpp
@@ -438,11 +441,11 @@
          hud_hintdisplay.cpp
          hud_msg.cpp
          hud_numericdisplay.cpp
+         Generating Code...
+         Compiling...
          hud_pdump.cpp
          hud_posture.cpp
          hud_redraw.cpp
-         Generating Code...
-         Compiling...
          hud_squadstatus.cpp
          hud_vehicle.cpp
          hud_weapon.cpp
@@ -462,11 +465,11 @@
          movehelper_client.cpp
          mp3player.cpp
          panelmetaclassmgr.cpp
+         Generating Code...
+         Compiling...
          particle_collision.cpp
          particle_litsmokeemitter.cpp
          particle_proxies.cpp
-         Generating Code...
-         Compiling...
          particle_simple3d.cpp
          particlemgr.cpp
          particles_attractor.cpp
@@ -484,11 +487,11 @@
          proxyentity.cpp
          proxyplayer.cpp
          proxypupil.cpp
+         Generating Code...
+         Compiling...
          ragdoll.cpp
          recvproxy.cpp
          simple_keys.cpp
-         Generating Code...
-         Compiling...
          smoke_fog_overlay.cpp
          splinepatch.cpp
          spritemodel.cpp
@@ -506,11 +509,11 @@
          vgui_centerstringpanel.cpp
          vgui_consolepanel.cpp
          vgui_debugoverlaypanel.cpp
+         Generating Code...
+         Compiling...
          vgui_fpspanel.cpp
          vgui_game_viewport.cpp
          vgui_grid.cpp
-         Generating Code...
-         Compiling...
          vgui_int.cpp
          vgui_loadingdiscpanel.cpp
          vgui_messagechars.cpp
@@ -528,8 +531,10 @@
          weapon_selection.cpp
          weapons_resource.cpp
          Generating Code...
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\hl2 /I.\hl2\elements /I..\..\game\shared\hl2 /I..\..\game\shared\episodic /I..\..\public /I.\ /I..\..\common /I..\..\public /I..\..\public\tier0 /I..\..\public\tier1 /I..\..\vgui2\include /I..\..\vgui2\controls /I..\..\game\shared /I.\game_controls /Zi /nologo /W4 /WX- /O2 /Ob2 /Oi /Ot /Oy- /D WIN32 /D _WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D NO_STRING_T /D CLIENT_DLL /D VECTOR /D VERSION_SAFE_STEAM_API_INTERFACES /D PROTECTED_THINGS_ENABLE /D fopen=dont_use_fopen /D strncpy=use_Q_strncpy_instead /D _snprintf=use_Q_snprintf_instead /D ENABLE_HTMLWINDOW /D HL2_CLIENT_DLL /D HL2_EPISODIC /D SP_SDK /D _WINDLL /D _MBCS /GF /Gm- /MT /GS- /Gy /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo".\Release_episodic\\" /Fd".\Release_episodic\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt hud_lcd.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I.\hl2 /I.\hl2\elements /I..\..\game\shared\hl2 /I..\..\game\shared\episodic /I..\..\public /I.\ /I..\..\common /I..\..\public\tier0 /I..\..\public\tier1 /I..\..\vgui2\include /I..\..\vgui2\controls /I..\..\game\shared /I.\game_controls /I"C:\Program Files (x86)\Khrona LLC\Awesomium SDK\1.6.6\\include" /Zi /nologo /W4 /WX- /O2 /Ob2 /Oi /Ot /Oy- /D WIN32 /D _WIN32 /D NDEBUG /D _WINDOWS /D _USRDLL /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NONSTDC_NO_DEPRECATE /D NO_STRING_T /D CLIENT_DLL /D VECTOR /D VERSION_SAFE_STEAM_API_INTERFACES /D PROTECTED_THINGS_ENABLE /D fopen=dont_use_fopen /D strncpy=use_Q_strncpy_instead /D _snprintf=use_Q_snprintf_instead /D ENABLE_HTMLWINDOW /D HL2_CLIENT_DLL /D HL2_EPISODIC /D SP_SDK /D _WINDLL /D _MBCS /GF /Gm- /MT /GS- /Gy /fp:fast /Zc:wchar_t /Zc:forScope /GR /Fo".\Release_episodic\\" /Fd".\Release_episodic\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt hud_lcd.cpp in_mouse.cpp
          hud_lcd.cpp
+         in_mouse.cpp
+         Generating Code...
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(990,5): warning MSB8012: TargetPath(C:\SourceSDK.Source_Code\BFA_NEW\BFA_DC\C++ Code\game\client\.\Release_episodic\Client Episodic.dll) does not match the Linker's OutputFile property value (C:\SourceSDK.Source_Code\BFA_NEW\BFA_DC\C++ Code\game\client\Release_episodic\Client.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppBuild.targets(992,5): warning MSB8012: TargetName(Client Episodic) does not match the Linker's OutputFile property value (Client). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
        Link:
@@ -561,7 +566,6 @@
          .\Release_episodic\beam_shared.obj
          .\Release_episodic\beamdraw.obj
          .\Release_episodic\bone_accessor.obj
-         .\Release_episodic\ge_screeneffects.obj
          .\Release_episodic\hud_bullettime.obj
          .\Release_episodic\bone_merge_cache.obj
          .\Release_episodic\bone_setup.obj
@@ -726,6 +730,10 @@
          .\Release_episodic\hud_vehicle.obj
          .\Release_episodic\hud_weapon.obj
          .\Release_episodic\igamesystem.obj
+         .\Release_episodic\c_manhack_screen.obj
+         .\Release_episodic\c_vehicle_manhack.obj
+         .\Release_episodic\c_weapon_manhack.obj
+         .\Release_episodic\tne_RenderTargets.obj
          .\Release_episodic\in_camera.obj
          .\Release_episodic\in_joystick.obj
          .\Release_episodic\in_main.obj
@@ -1050,4 +1058,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:02:09.30
+Time Elapsed 00:02:05.47

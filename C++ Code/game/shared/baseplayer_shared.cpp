@@ -1519,7 +1519,6 @@ void CBasePlayer::CalcPlayerView( Vector& eyeOrigin, QAngle& eyeAngles, float& f
 	eyeOrigin += vSmoothOffset;
 	m_flObserverChaseDistance = 0.0;
 #endif
-
 	// calc current FOV
 	fov = GetFOV();
 }

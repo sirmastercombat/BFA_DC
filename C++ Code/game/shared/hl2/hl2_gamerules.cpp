@@ -1797,6 +1797,9 @@ CAmmoDef *GetAmmoDef()
 	if ( !bInitted )
 	{
 		bInitted = true;
+				//TERO: Define the manhack ammo
+		def.AddAmmoType("Manhack",		DMG_CLUB, TRACER_NONE, NULL, NULL, 3, 0, 0);
+		def.AddAmmoType("ManhacksOnline",	DMG_CLUB, TRACER_NONE, NULL, NULL, 3, 0, 0 );
 
 		def.AddAmmoType("AR2",				DMG_BULLET,					TRACER_LINE_AND_WHIZ,	"sk_plr_dmg_ar2",			"sk_npc_dmg_ar2",			"sk_max_ar2",			BULLET_IMPULSE(200, 1225), 0 );
 		def.AddAmmoType("AlyxGun",			DMG_BULLET,					TRACER_LINE,			"sk_plr_dmg_alyxgun",		"sk_npc_dmg_alyxgun",		"sk_max_alyxgun",		BULLET_IMPULSE(200, 1225), 0 );

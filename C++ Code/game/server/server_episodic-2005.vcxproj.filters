@@ -1749,6 +1749,12 @@
     <ClCompile Include="..\shared\bfa\singleplayer_animstate.cpp">
       <Filter>Source Files\BFA DLL</Filter>
     </ClCompile>
+    <ClCompile Include="Human_Error\vehicle_manhack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Human_Error\weapon_manhack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\shared\achievement_saverestore.h">
@@ -3469,6 +3475,12 @@
     </ClInclude>
     <ClInclude Include="..\shared\bfa\singleplayer_animstate.h">
       <Filter>Source Files\BFA DLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Human_Error\vehicle_manhack.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Human_Error\weapon_manhack.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

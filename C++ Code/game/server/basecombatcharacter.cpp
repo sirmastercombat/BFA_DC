@@ -59,7 +59,7 @@ extern int	g_interactionBarnacleVictimReleased;
 extern ConVar weapon_showproficiency;
 
 ConVar ai_show_hull_attacks( "ai_show_hull_attacks", "0" );
-ConVar ai_force_serverside_ragdoll( "ai_force_serverside_ragdoll", "0" );
+ConVar ai_force_serverside_ragdoll( "ai_force_serverside_ragdoll", "1", FCVAR_ARCHIVE );
 
 #ifndef _RETAIL
 ConVar ai_use_visibility_cache( "ai_use_visibility_cache", "1" );

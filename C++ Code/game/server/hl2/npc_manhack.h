@@ -61,6 +61,7 @@ public:
 	~CNPC_Manhack();
 
 	Class_T			Classify(void);
+	Disposition_t	IRelationType( CBaseEntity *pEnemy );
 
 	bool			CorpseGib( const CTakeDamageInfo &info );
 	void			Event_Dying(void);
@@ -135,7 +136,7 @@ public:
 	void			VPhysicsCollision( int index, gamevcollisionevent_t *pEvent );
 	void			HitPhysicsObject( CBaseEntity *pOther );
 	virtual void	ClampMotorForces( Vector &linear, AngularImpulse &angular );
-	unsigned int	PhysicsSolidMaskForEntity( void ) const;
+
 
 	// Create smoke trail!
 	void CreateSmokeTrail();
@@ -246,8 +247,6 @@ private:
 	bool			m_bShowingHostile;
 
 	bool			m_bBladesActive;
-	bool			m_bIgnoreClipbrushes;
-
 	float			m_flBladeSpeed;
 
 	CSprite			*m_pEyeGlow;
@@ -275,6 +274,29 @@ private:
 	CNetworkVar( int,	m_nEnginePitch2 );
 	CNetworkVar( float,	m_flEnginePitch1Time );
 	CNetworkVar( float,	m_flEnginePitch2Time );
+
+	//NEW CONTROLLABLE STUFF:
+	bool m_bControllable;
+	bool m_bShouldFollowPlayer;
+
+public:
+	void		SetControllable(bool bControllable);
+	void		ShouldFollowPlayer(bool bFollow) { m_bShouldFollowPlayer = bFollow; }
+	void		ShowRedGlow(bool bHide);
+
+	//void		SetHeadYaw(float HeadYaw);
+
+	void		MoveUpDown(float direction);
+	void		MoveForwardBack(float direction, QAngle angManhackEye);
+	//void TurnLeft();
+	//void TurnRight();
+
+	Vector		GetManhackView();
+	//Vector		m_vCollisionView;		//NOTE: I think this is not even used at the moment
+	
+	void		ComeBackToPlayer(CBasePlayer *pPlayer, float fCallBackTime);
+	void		GoThere(CBasePlayer *pPlayer, float fGoHereTime);
+
 };
 
 #endif	//NPC_MANHACK_H

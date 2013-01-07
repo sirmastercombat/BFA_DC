@@ -326,7 +326,6 @@ void CNPC_Combine::Spawn( void )
 {
 	SetHullType(HULL_HUMAN);
 	SetHullSizeNormal();
-
 	SetSolid( SOLID_BBOX );
 	AddSolidFlags( FSOLID_NOT_STANDABLE );
 	SetMoveType( MOVETYPE_STEP );

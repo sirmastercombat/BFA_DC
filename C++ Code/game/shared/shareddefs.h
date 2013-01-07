@@ -600,9 +600,11 @@ struct FireBulletsInfo_t
 		m_vecDirShooting.Init( VEC_T_NAN, VEC_T_NAN, VEC_T_NAN );
 #endif
 		m_bPrimaryAttack = true;
+		m_iPenetrationCount = 1;
+		m_flPenetrationForce = 0.0f;
 	}
 
-	FireBulletsInfo_t( int nShots, const Vector &vecSrc, const Vector &vecDir, const Vector &vecSpread, float flDistance, int nAmmoType, bool bPrimaryAttack = true )
+	FireBulletsInfo_t( int nShots, const Vector &vecSrc, const Vector &vecDir, const Vector &vecSpread, float flDistance, int nAmmoType, bool bPrimaryAttack = true,  int iPenetrationCount = 1,  float flPenetrationDeph = 300.0f)
 	{
 		m_iShots = nShots;
 		m_vecSrc = vecSrc;
@@ -618,6 +620,8 @@ struct FireBulletsInfo_t
 		m_pAdditionalIgnoreEnt = NULL;
 		m_flDamageForceScale = 1.0f;
 		m_bPrimaryAttack = bPrimaryAttack;
+		m_iPenetrationCount = iPenetrationCount;
+		m_flPenetrationForce = flPenetrationDeph;
 	}
 
 	int m_iShots;
@@ -634,6 +638,8 @@ struct FireBulletsInfo_t
 	CBaseEntity *m_pAttacker;
 	CBaseEntity *m_pAdditionalIgnoreEnt;
 	bool m_bPrimaryAttack;
+	int m_iPenetrationCount;
+	float m_flPenetrationForce;
 };
 
 //-----------------------------------------------------------------------------

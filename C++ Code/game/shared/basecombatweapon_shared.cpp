@@ -471,7 +471,8 @@ int CBaseCombatWeapon::GetSlot( void ) const
 //-----------------------------------------------------------------------------
 int CBaseCombatWeapon::GetPosition( void ) const
 {
-	return GetWpnData().iPosition;
+//		return 0;
+		return GetWpnData().iPosition;
 }
 
 //-----------------------------------------------------------------------------
@@ -1303,10 +1304,12 @@ void CBaseCombatWeapon::SetWeaponVisible( bool visible )
 {
 	CBaseViewModel *vm = NULL;
 
+
 	CBasePlayer *pOwner = ToBasePlayer( GetOwner() );
 	if ( pOwner )
 	{
 		vm = pOwner->GetViewModel( m_nViewModelIndex );
+
 	}
 
 	if ( visible )

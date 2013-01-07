@@ -1500,7 +1500,16 @@
     <ClCompile Include="..\shared\bfa\singleplayer_animstate.cpp">
       <Filter>Source Files\BFA DLL</Filter>
     </ClCompile>
-    <ClCompile Include="BFA\ge_screeneffects.cpp">
+    <ClCompile Include="Human_Error\c_manhack_screen.cpp">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Human_Error\c_vehicle_manhack.cpp">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Human_Error\c_weapon_manhack.cpp">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClCompile>
+    <ClCompile Include="Human_Error\tne_RenderTargets.cpp">
       <Filter>Source Files\BFA DLL</Filter>
     </ClCompile>
   </ItemGroup>
@@ -3263,7 +3272,13 @@
     <ClInclude Include="..\shared\bfa\singleplayer_animstate.h">
       <Filter>Source Files\BFA DLL</Filter>
     </ClInclude>
-    <ClInclude Include="BFA\ge_screeneffects.h">
+    <ClInclude Include="Human_Error\c_manhack_screen.h">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Human_Error\c_vehicle_manhack.h">
+      <Filter>Source Files\BFA DLL</Filter>
+    </ClInclude>
+    <ClInclude Include="Human_Error\tne_RenderTargets.h">
       <Filter>Source Files\BFA DLL</Filter>
     </ClInclude>
   </ItemGroup>

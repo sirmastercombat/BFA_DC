@@ -1526,7 +1526,71 @@ void CBaseEntity::HandleShotImpactingGlass( const FireBulletsInfo_t &info,
 
 	FireBullets( behindGlassInfo );
 }
+#define MAX_BULLET_PENETRATION 32.0f //TODO: Should we allow the weapon to have it's own max penetration?
+void CBaseEntity::HandleBulletPenetration( const FireBulletsInfo_t &info, 
+	const trace_t &tr, const Vector &vecDir, ITraceFilter *pTraceFilter, int TimesPenitrate )
+{
+	if (!(info.m_iPenetrationCount > 0))
+		return;
+	// Move through the glass until we're at the other side
+	Vector	testPos = tr.endpos + ( vecDir * MAX_BULLET_PENETRATION );
 
+	CEffectData	data;
+
+	data.m_vNormal = tr.plane.normal;
+	data.m_vOrigin = tr.endpos;
+
+	DispatchEffect( "RagdollImpact", data );
+	surfacedata_t *psurf = physprops->GetSurfaceData(tr.surface.surfaceProps); // I have a weird naming convention...
+	bool bShouldPenetrate = false;
+	if( psurf != NULL )// && (psurf->game.material == CHAR_TEX_METAL))
+		switch(psurf->game.material)
+		{
+			case CHAR_TEX_METAL:
+			case CHAR_TEX_WARPSHIELD:
+				bShouldPenetrate = false;
+			break;
+			default:
+				bShouldPenetrate = true;
+		}
+		
+	if(!bShouldPenetrate)
+		return;
+	trace_t	penetrationTrace;
+
+	// Re-trace as if the bullet had passed right through
+	UTIL_TraceLine( testPos, tr.endpos, MASK_SHOT, pTraceFilter, &penetrationTrace );
+
+	// See if we found the surface again
+	if ( penetrationTrace.startsolid || tr.fraction == 0.0f || penetrationTrace.fraction == 1.0f )
+		return;
+
+	//FIXME: This is technically frustrating MultiDamage, but multiple shots hitting multiple targets in one call
+	//		 would do exactly the same anyway...
+
+	// Impact the other side (will look like an exit effect)
+	DoImpactEffect( penetrationTrace, GetAmmoDef()->DamageType(info.m_iAmmoType) );
+
+	data.m_vNormal = penetrationTrace.plane.normal;
+	data.m_vOrigin = penetrationTrace.endpos;
+	
+	DispatchEffect( "GlassImpact", data );
+
+	// Refire the round, as if starting from behind the glass
+	FireBulletsInfo_t behindGlassInfo;
+	behindGlassInfo.m_iShots = 1;
+	behindGlassInfo.m_vecSrc = penetrationTrace.endpos;
+	behindGlassInfo.m_vecDirShooting = vecDir;
+	behindGlassInfo.m_vecSpread = vec3_origin;
+	behindGlassInfo.m_flDistance = info.m_flDistance*( 1.0f - tr.fraction );
+	behindGlassInfo.m_iAmmoType = info.m_iAmmoType;
+	behindGlassInfo.m_iTracerFreq = info.m_iTracerFreq;
+	behindGlassInfo.m_iDamage = info.m_iDamage;
+	behindGlassInfo.m_pAttacker = info.m_pAttacker ? info.m_pAttacker : this;
+	behindGlassInfo.m_nFlags = info.m_nFlags;
+	behindGlassInfo.m_iPenetrationCount --;
+	FireBullets( behindGlassInfo );
+}
 
 //-----------------------------------------------------------------------------
 // Computes the tracer start position

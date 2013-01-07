@@ -149,7 +149,7 @@ if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program file
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>.\hl2;.\hl2\elements;..\..\game\shared\hl2;..\..\game\shared\episodic;..\..\public;.\;..\..\common;..\..\public;..\..\public\tier0;..\..\public\tier1;..\..\vgui2\include;..\..\vgui2\controls;..\..\game\shared;.\game_controls;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\hl2;.\hl2\elements;..\..\game\shared\hl2;..\..\game\shared\episodic;..\..\public;.\;..\..\common;..\..\public\tier0;..\..\public\tier1;..\..\vgui2\include;..\..\vgui2\controls;..\..\game\shared;.\game_controls;$(AWE_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;NO_STRING_T;CLIENT_DLL;VECTOR;VERSION_SAFE_STEAM_API_INTERFACES;PROTECTED_THINGS_ENABLE;fopen=dont_use_fopen;strncpy=use_Q_strncpy_instead;_snprintf=use_Q_snprintf_instead;ENABLE_HTMLWINDOW;HL2_CLIENT_DLL;HL2_EPISODIC;SP_SDK;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <ExceptionHandling>
@@ -242,7 +242,6 @@ if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program file
     <ClCompile Include="..\shared\beam_shared.cpp" />
     <ClCompile Include="beamdraw.cpp" />
     <ClCompile Include="..\..\public\bone_accessor.cpp" />
-    <ClCompile Include="BFA\ge_screeneffects.cpp" />
     <ClCompile Include="BFA\hud_bullettime.cpp" />
     <ClCompile Include="bone_merge_cache.cpp" />
     <ClCompile Include="..\..\public\bone_setup.cpp">
@@ -457,6 +456,10 @@ if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program file
     <ClCompile Include="hud_vehicle.cpp" />
     <ClCompile Include="hud_weapon.cpp" />
     <ClCompile Include="..\shared\igamesystem.cpp" />
+    <ClCompile Include="Human_Error\c_manhack_screen.cpp" />
+    <ClCompile Include="Human_Error\c_vehicle_manhack.cpp" />
+    <ClCompile Include="Human_Error\c_weapon_manhack.cpp" />
+    <ClCompile Include="Human_Error\tne_RenderTargets.cpp" />
     <ClCompile Include="in_camera.cpp" />
     <ClCompile Include="in_joystick.cpp" />
     <ClCompile Include="in_main.cpp" />
@@ -855,7 +858,6 @@ if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program file
     <ClInclude Include="..\shared\achievement_saverestore.h" />
     <ClInclude Include="..\shared\achievementmgr.h" />
     <ClInclude Include="..\shared\baseachievement.h" />
-    <ClInclude Include="BFA\ge_screeneffects.h" />
     <ClInclude Include="c_props.h" />
     <ClInclude Include="c_slideshow_display.h" />
     <ClInclude Include="c_team_objectiveresource.h" />
@@ -865,6 +867,9 @@ if exist "$(TargetDir)"client.pdb copy "$(TargetDir)"client.pdb "c:\program file
     <ClInclude Include="..\shared\particle_parse.h" />
     <ClInclude Include="..\shared\particle_property.h" />
     <ClInclude Include="..\shared\point_bonusmaps_accessor.h" />
+    <ClInclude Include="Human_Error\c_manhack_screen.h" />
+    <ClInclude Include="Human_Error\c_vehicle_manhack.h" />
+    <ClInclude Include="Human_Error\tne_RenderTargets.h" />
     <ClInclude Include="vgui_avatarimage.h" />
     <ClInclude Include="viewdebug.h" />
     <ClInclude Include="viewpostprocess.h" />

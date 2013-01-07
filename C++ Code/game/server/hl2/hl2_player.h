@@ -260,7 +260,7 @@ public:
 	void				KickIdle( void );
 	CNetworkVar( float, m_flNextKickAttack );
 	CNetworkVar( bool, m_bIsKicking );
-
+	float     m_fRegenRemander;
 	void SetAnimation( PLAYER_ANIM playerAnim );
 
 	void				ArmsConnect( void );
@@ -318,6 +318,12 @@ public:
 	CSoundPatch *m_sndLeeches;
 	CSoundPatch *m_sndWaterSplashes;
 
+//New Leaning stuff
+	void CheckLean();
+	void StartLeaning();
+	void StopLeaning();
+	bool IsLeaning(){return m_bIsLeaning;}
+
 protected:
 	virtual void		PreThink( void );
 	virtual	void		PostThink( void );
@@ -327,7 +333,8 @@ protected:
 
 	virtual void		ItemPostFrame();
 	virtual void		PlayUseDenySound();
-
+	//New Leaning stuff
+	bool				m_bIsLeaning;
 private:
 	bool				CommanderExecuteOne( CAI_BaseNPC *pNpc, const commandgoal_t &goal, CAI_BaseNPC **Allies, int numAllies );
 

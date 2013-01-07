@@ -79,7 +79,24 @@ ITexture *GetCameraTexture( void )
 	
 	return s_pCameraTexture;
 }
+//=============================================================================
+// Manhack Screen Texture
+//=============================================================================
 
+#define MANHACK_SCREEN_MATERIAL "vgui/screens/manhack_screen"
+
+static CTextureReference s_pManhackScreenTexture;
+ITexture *GetManhackScreenTexture( void )
+{ 
+	if ( !s_pManhackScreenTexture )
+	{
+		s_pManhackScreenTexture.Init( materials->FindTexture( MANHACK_SCREEN_MATERIAL, 
+						TEXTURE_GROUP_RENDER_TARGET ) );
+		Assert( !IsErrorTexture( s_pManhackScreenTexture ) );
+		AddReleaseFunc();
+	}
+	return s_pManhackScreenTexture;
+}
 //=============================================================================
 // Full Frame Depth Texture
 //=============================================================================
@@ -252,6 +269,7 @@ void ReleaseRenderTargets( void )
 	s_pQuarterSizedFB0.Shutdown();
 	s_pQuarterSizedFB1.Shutdown();
 	s_pFullFrameDepthTexture.Shutdown();
+	s_pManhackScreenTexture.Shutdown();
 
 	for (int i=0; i<MAX_FB_TEXTURES; ++i)
 		s_pFullFrameFrameBufferTexture[i].Shutdown();

@@ -120,6 +120,8 @@ static	kbutton_t	in_break;
 static	kbutton_t	in_zoom;
 static  kbutton_t   in_grenade1;
 static  kbutton_t   in_grenade2;
+static  kbutton_t	in_leanleft;
+static  kbutton_t   in_leanright;
 kbutton_t	in_ducktoggle;
 
 /*
@@ -464,6 +466,10 @@ void IN_Grenade1Up( const CCommand &args ) { KeyUp( &in_grenade1, args[1] ); }
 void IN_Grenade1Down( const CCommand &args ) { KeyDown( &in_grenade1, args[1] ); }
 void IN_Grenade2Up( const CCommand &args ) { KeyUp( &in_grenade2, args[1] ); }
 void IN_Grenade2Down( const CCommand &args ) { KeyDown( &in_grenade2, args[1] ); }
+void IN_LeanLeftDown( const CCommand &args ) { KeyDown( &in_leanleft, args[1] ); }
+void IN_LeanLeftUp( const CCommand &args ) { KeyUp( &in_leanleft, args[1] ); }
+void IN_LeanRightDown( const CCommand &args ) {KeyDown(&in_leanright, args[1] ); }
+void IN_LeanRightUp( const CCommand &args ) {KeyUp(&in_leanright, args[1] ); }
 void IN_XboxStub( const CCommand &args ) { /*do nothing*/ }
 
 void IN_DuckToggle( const CCommand &args ) 
@@ -1300,7 +1306,8 @@ int CInput::GetButtonBits( int bResetState )
 	CalcButtonBits( bits, IN_ZOOM, s_ClearInputState, &in_zoom, bResetState );
 	CalcButtonBits( bits, IN_GRENADE1, s_ClearInputState, &in_grenade1, bResetState );
 	CalcButtonBits( bits, IN_GRENADE2, s_ClearInputState, &in_grenade2, bResetState );
-
+	CalcButtonBits( bits, IN_LEANLEFT, s_ClearInputState, &in_leanleft, bResetState );
+	CalcButtonBits( bits, IN_LEANRIGHT, s_ClearInputState, &in_leanright, bResetState );
 	if ( KeyState(&in_ducktoggle) )
 	{
 		bits |= IN_DUCK;
@@ -1455,7 +1462,10 @@ static ConCommand endgrenade1( "-grenade1", IN_Grenade1Up );
 static ConCommand startgrenade1( "+grenade1", IN_Grenade1Down );
 static ConCommand endgrenade2( "-grenade2", IN_Grenade2Up );
 static ConCommand startgrenade2( "+grenade2", IN_Grenade2Down );
-
+static ConCommand startleanleft( "+leanleft", IN_LeanLeftDown );
+static ConCommand endleanleft( "-leanleft", IN_LeanLeftUp );
+static ConCommand startleanright( "+leanright", IN_LeanRightDown );
+static ConCommand endleanright( "-leanright", IN_LeanRightUp );
 #ifdef TF_CLIENT_DLL
 static ConCommand toggle_duck( "toggle_duck", IN_DuckToggle );
 #endif
